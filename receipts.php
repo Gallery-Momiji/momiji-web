@@ -27,8 +27,8 @@ while( true ) {
 
 	$receipts = findUnprintedReceipts($connection);
 	if (count( $receipts ) === 0 ){
-		echo "Nothing to print, sleeping...\n";
-		sleep(1);
+		//echo "Nothing to print, sleeping...\n";
+		sleep(2);
 	} else {
 
 		foreach($receipts as $receipt){

@@ -9,6 +9,7 @@
 	// %USER%  - Person who processed this transaction.
 
 
+    date_default_timezone_set('America/New_York');
 
 
 	$template =   BIG . "****************" .SBIG . LF;
