@@ -32,6 +32,12 @@
 		return $return;
 	}
 
+	function addBidder($conn, $fields){
+		$query = "INSERT INTO `torrents`.`bidders` (`name`, `phoneno`, `eaddress`, `maddress`) VALUES ('".$fields['name']."', '".$fields['pnumber']."', '".$fields['eaddress']."', '".$fields['maddress']."');";
+		$result = queryDatabase($conn, $query);
+		
+		var_dump($result);
+	}
 	
 	function getArtistInfo($connection, $artistID){
 		$database = queryDatabase($connection,"select * from `artists` where `ArtistID`= ". $connection->real_escape_string($artistID)  .";");
