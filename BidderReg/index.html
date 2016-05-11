@@ -1,0 +1,146 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gallery Momiji - Bidder Registration</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Why register?</h1>
+        <p>Here is some text we will put explaining what this is and why we ask the user to register</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+	  <div class="alert alert-success" role="alert" id="success_bidder">
+        <strong>Well done!</strong> You successfully registered as a bidder.
+      </div>
+	  <div class="alert alert-danger" role="alert" id="fail_bidder">
+        <strong>Uh Oh</strong> There was an issue submiting your application. did you agree to the terms?
+      </div>
+        <form class="form-horizontal" action="submit.php" method="post">
+			<fieldset>
+
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="name">Name</label>  
+			  <div class="col-md-4">
+			  <input id="name" name="name" type="text" placeholder="First / Last" class="form-control input-md" required="">
+				
+			  </div>
+			</div>
+
+			<!-- Textarea -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="maddress">Mailing Address</label>
+			  <div class="col-md-4">                     
+				<textarea class="form-control" id="maddress" name="maddress"></textarea>
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="pnumber">Phone Number</label>  
+			  <div class="col-md-2">
+			  <input id="pnumber" name="pnumber" type="text" placeholder="###-###-####" class="form-control input-md" required="">
+				
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="eaddress">Email Address</label>  
+			  <div class="col-md-4">
+			  <input id="eaddress" name="eaddress" type="text" placeholder="me@server.com" class="form-control input-md" required="">
+				
+			  </div>
+			</div>
+
+			<!-- Textarea -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="terms">Terms and Conditions</label>
+			  <div class="col-md-4">                     
+				<textarea class="form-control" id="terms" name="terms" disabled>Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.
+				</textarea>
+			  </div>
+			</div>
+
+			<!-- Multiple Checkboxes -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="checkboxes">Do you agree to our terms?</label>
+			  <div class="col-md-4">
+			  <div class="checkbox">
+				<label for="checkboxes-0">
+				  <input type="checkbox" name="terms" id="checkboxes-0" value="1">
+				  I agree to these terms
+				</label>
+				</div>
+			  </div>
+			</div>
+			
+			<!-- Button -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="submit"></label>
+			  <div class="col-md-4">
+				<button id="submit" name="submit" class="btn btn-primary">Submit Registration</button>
+			  </div>
+			</div>
+
+			</fieldset>
+		</form>
+
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Anime North 2016</p>
+      </footer>
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
