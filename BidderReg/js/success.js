@@ -1,9 +1,6 @@
-$.urlParam = function(name) {
-  var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.search);
-  if (results === null) return -1;
-  return results[1] || -1;
-}
-
-if ($.urlParam('bidder') !== "-1"){
-	$('#bannermessage').append("<strong>"+$.urlParam('bidder')+"</strong>");
+var results = new RegExp('[\?&amp;]bidder=([^&amp;#]*)').exec(window.location.search);
+if (results === null) {
+	window.location.href="index.html?error=1";
+} else {
+	$('#bannermessage').append("<strong>"+results[1]+"</strong>");
 }
