@@ -43,8 +43,8 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Why register?</h1>
-        <p>Here is some text we will put explaining what this is and why we ask the user to register</p>
+        <p>Gallery Momiji requires all bidders to register and consent to the terms mentioned below to ensure quality and fairness of the bidding process.</p>
+        <p>Please enter your information and read the terms and conditions listed below.</p>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
         <strong>Well done!</strong> You successfully registered as a bidder.
       </div>
 	  <div class="alert alert-danger" role="alert" id="fail_bidder">
-        <strong>Uh Oh</strong> There was an issue submiting your application. did you agree to the terms?
+        <strong>Error</strong> There was an issue submiting your application: please agree to the terms.
       </div>
         <form class="form-horizontal" action="submit.php" method="post">
 			<fieldset>
@@ -65,7 +65,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="name">Name</label>  
 			  <div class="col-md-4">
-			  <input id="name" name="name" type="text" placeholder="First / Last" class="form-control input-md" required="">
+			  <input id="name" name="name" type="text" placeholder="First and Last" class="form-control input-md" required="">
 				
 			  </div>
 			</div>
@@ -91,7 +91,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="eaddress">Email Address</label>  
 			  <div class="col-md-4">
-			  <input id="eaddress" name="eaddress" type="text" placeholder="me@server.com" class="form-control input-md" required="">
+			  <input id="eaddress" name="eaddress" type="text" placeholder="me@website.com" class="form-control input-md" required="">
 				
 			  </div>
 			</div>
@@ -100,19 +100,41 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="terms">Terms and Conditions</label>
 			  <div class="col-md-4">                     
-				<textarea class="form-control" id="terms" name="terms" disabled>Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.
-				</textarea>
+				<textarea style="width: 500px; height: 500px;" class="form-control" id="terms" name="terms" disabled>RULES FOR BIDDING
+------------------------------------
+
+1) Your Bidder's Number is your primary ID for bidding and artwork pickup. It is assigned at the Control Desk.
+
+2) Once a bid has been made, IT CANNOT BE REMOVED. Please print legibly on the bid sheets. When bidding, please bid in whole dollar amounts and increments only. Bids placed in partial dollar amounts will be rounded up to the nearest dollar (e.g., a writen bid of $8.01 will be adjusted to $9.00).
+
+3) Payment will be accpeted in cash only. Cash is preferred in the current of the convention (Canadian Dollars), but American currency will be honoured and accepted at par.
+
+4) Artst Show Hours: Friday 6-10 pm, Saturday 10 am - 8 pm; Sunday viewing for minimum bid sales only: 10 am - 2 pm.
+
+5) The Art Auction will be held on Sunday Morning at 11 am in Gallery Momiji
+
+6) Certian pieces are available for Quick Sale on Saturday only from 10 am - 8 pm, provided there are no bigs already on the piece. Speak to a staff member at the Control Desk for assistance. Pieces purchased at Quick Sales may be picked up on Saturday. Otherwise:
+
+7) Pickup of pickchased artwork is between 10 am and 2 pm on Sunday. All artwork must be picked up by 2 pm on Sunday. Any artwork that has not been claimed by that time will be returned to the artist. Any artwork that is not claimed by the artist will become the property of Anime North.
+
+TERMS AND CONDITIONS
+------------------------------------
+
+Any bid, written or verbal, which a bidder makes on any piece of art is a legal and binding agreement. All bidders must understand that bids, once made, cannot be withdrawn.
+All payment for purchased artwork is required prior to a bidder's departure from the convention (see #7 above)
+
+Clicking the checkbox below acknowledges that you understand, agree and shall comply with all aforementioned rules and terms.</textarea>
 			  </div>
 			</div>
 
 			<!-- Multiple Checkboxes -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="checkboxes">Do you agree to our terms?</label>
+			  <label class="col-md-4 control-label" for="checkboxes">Consent of Agreement</label>
 			  <div class="col-md-4">
 			  <div class="checkbox">
 				<label for="checkboxes-0">
 				  <input type="checkbox" name="terms" id="checkboxes-0" value="1">
-				  I agree to these terms
+				  I agree to all terms and conditions listed above
 				</label>
 				</div>
 			  </div>
@@ -134,7 +156,8 @@
       <hr>
 
       <footer>
-        <p>&copy; Anime North 2016</p>
+        <p>&copy; 2016 Anime North, Gallery Momiji</p>
+        <p>This is open source! Find the source code on <a href=https://github.com/Gallery-Momiji>GitHub!</a></p>
       </footer>
     </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
