@@ -35,12 +35,12 @@
           <a class="navbar-brand" href="#">Gallery Momiji - Bidder Registration</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          
+
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <!-- Main jumbotron -->
     <div class="jumbotron">
       <div class="container">
         <p>To ensure quality and fairness in the bidding process, Gallery Momiji requires all bidders to register and consent to the terms below.</p>
@@ -48,8 +48,8 @@
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
       <div class="row">
+      <!-- Alert Messages -->
 	  <div class="alert alert-danger" style="display:none" role="alert" id="fail_error">
         <strong>Error:</strong> There was a problem submiting your request, please contact a staff member.
       </div>
@@ -60,7 +60,7 @@
 			<fieldset>
 
 
-			<!-- Text input-->
+			<!-- Name input-->
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="name">Name</label>  
 			  <div class="col-md-4">
@@ -69,7 +69,7 @@
 			  </div>
 			</div>
 
-			<!-- Textarea -->
+			<!-- Mailing Address input -->
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="maddress">Mailing Address</label>
 			  <div class="col-md-4">                     
@@ -77,7 +77,7 @@
 			  </div>
 			</div>
 
-			<!-- Text input-->
+			<!-- Phone input-->
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="pnumber">Phone Number</label>  
 			  <div class="col-md-2">
@@ -86,7 +86,7 @@
 			  </div>
 			</div>
 
-			<!-- Text input-->
+			<!-- Email input-->
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="eaddress">Email Address</label>  
 			  <div class="col-md-4">
@@ -95,11 +95,11 @@
 			  </div>
 			</div>
 
-			<!-- Textarea -->
+			<!-- Terms and Cond -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="terms">Terms and Conditions</label>
+			  <label class="col-md-4 control-label" for="termscond">Terms and Conditions</label>
 			  <div class="col-md-4">                     
-				<textarea style="width: 500px; height: 500px;" class="form-control" id="terms" name="terms" disabled>RULES FOR BIDDING
+				<textarea style="width: 500px; height: 500px;" class="form-control" id="termscond" name="termscond" disabled>RULES FOR BIDDING
 ------------------------------------
 
 1) Your Bidder's Number is your primary ID for bidding and artwork pickup. It is assigned at the Control Desk.
@@ -126,20 +126,20 @@ Clicking the checkbox below acknowledges that you understand, agree and shall co
 			  </div>
 			</div>
 
-			<!-- Multiple Checkboxes -->
+			<!-- Agreement Checkbox -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="checkboxes">Consent of Agreement</label>
+			  <label class="col-md-4 control-label" for="terms">Consent of Agreement</label>
 			  <div class="col-md-4">
 			  <div class="checkbox">
 				<label for="checkboxes-0">
-				  <input type="checkbox" name="terms" id="checkboxes-0" value="1">
+				  <input type="checkbox" name="terms" id="terms" value="1">
 				  I agree to all terms and conditions listed above
 				</label>
 				</div>
 			  </div>
 			</div>
 			
-			<!-- Button -->
+			<!-- Submit Button -->
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="submit"></label>
 			  <div class="col-md-4">
@@ -154,6 +154,7 @@ Clicking the checkbox below acknowledges that you understand, agree and shall co
 
       <hr>
 
+      <!-- Foot Note -->
       <footer>
         <p>&copy; 2016 Anime North, Gallery Momiji</p>
         <p>This is open source! Find the source code on <a href=https://github.com/Gallery-Momiji>GitHub!</a></p>
