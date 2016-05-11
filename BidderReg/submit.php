@@ -52,6 +52,6 @@
 			$valid = true;
 		}
 	}
-	header('Location: index.html?success=1');
+	header('Location: success.html');
 	exit;
 	
