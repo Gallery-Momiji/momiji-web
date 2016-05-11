@@ -52,6 +52,6 @@
 			$valid = true;
 		}
 	}
-	header('Location: success.html');
+	header('Location: success.html?bidder=999');//implement me!
 	exit;
 	
