@@ -132,7 +132,7 @@ Clicking the checkbox below acknowledges that you understand, agree and shall co
 			  <div class="col-md-4">
 			  <div class="checkbox">
 				<label for="checkboxes-0">
-				  <input type="checkbox" name="terms" id="terms" value="1">
+				  <input type="checkbox" name="terms" id="terms" value="1" onClick="document.getElementById('submit').disabled=!checked">
 				  I agree to all terms and conditions listed above
 				</label>
 				</div>
@@ -143,7 +143,7 @@ Clicking the checkbox below acknowledges that you understand, agree and shall co
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="submit"></label>
 			  <div class="col-md-4">
-				<button id="submit" name="submit" class="btn btn-primary">Submit Registration</button>
+				<button id="submit" name="submit" class="btn btn-primary" disabled>Submit Registration</button>
 			  </div>
 			</div>
 
