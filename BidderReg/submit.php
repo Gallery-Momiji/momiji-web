@@ -31,7 +31,7 @@
 	}
 	
 	
-	addBidder( $connection, $fields );
+	$biddernum = addBidder( $connection, $fields );
 	
 	
 	function validate_general($value){
@@ -52,6 +52,6 @@
 			$valid = true;
 		}
 	}
-	header('Location: success.html?bidder=999');//implement me!
+	header('Location: success.html?bidder='.$biddernum);
 	exit;
 	

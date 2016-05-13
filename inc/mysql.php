@@ -33,10 +33,20 @@
 	}
 
 	function addBidder($conn, $fields){
-		$query = "INSERT INTO `bidders` (`name`, `phoneno`, `eaddress`, `maddress`) VALUES ('".$fields['name']."', '".$fields['pnumber']."', '".$fields['eaddress']."', '".$fields['maddress']."');";
-		$result = queryDatabase($conn, $query);
-		
-		var_dump($result);
+        $database = queryDatabase( $conn, 'select MAX(`bidderno`)+1 as `next_num` FROM `bidders` limit 0,1;');
+        $return = array();
+        //Fixme: not sure how to do this without a foreach:
+        foreach ($database as $key => $value){
+            $return = $value['next_num'] ;
+        }
+        unset ($database, $key, $value);
+
+        $query = "INSERT INTO `bidders` (`bidderno`, `name`, `phoneno`, `eaddress`, `maddress`) VALUES (".$return.",'".$fields['name']."', '".$fields['pnumber']."', '".$fields['eaddress']."', '".$fields['maddress']."');";
+        $result = queryDatabase($conn, $query);
+
+        var_dump($result); //I'm assuming this was just for debugging?
+
+        return $return;
 	}
 	
 	function getArtistInfo($connection, $artistID){
