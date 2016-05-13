@@ -3,7 +3,7 @@
 		require_once('config.php');
 		require_once('inc/mysql.php');
 		require_once('inc/util.php');
-		
+
 		$total_money = 0;
 		$line = 0;
 		$pncount = 0;
@@ -20,17 +20,13 @@
 				if (isGS($item)){
 					$pncount++;
 					$pns[$date][] = array($item =>$prices[$key]);
-				} else{ 
+				} else{
 					$ancount++;
 					$ans[$date][] = array($item =>$prices[$key]);
 				}
-				
 			}
-			
-			
 		}
-		
-		
+
 		foreach ($ans as $day => $sales){
 			$td = 0;
 			$total = 0;
@@ -43,9 +39,9 @@
 			}
 			echo "</tr></table>Total for this day was : $<b>" . $total . "</b>";
 		}
-		
+
 		echo "<hr>";
-		
+
 		foreach ($pns as $day => $sales){
 			$td = 0;
 			$total = 0;
@@ -57,23 +53,15 @@
 				if ($td % 6 == 0){ echo "</tr><tr>";}
 			}
 			echo "</tr></table>Total for this day was : $<b>" . $total . "</b>";
-			
 		}
-?>  
+?>
 
 <h1>Statistics</h1>
 
 <?php
-
 	echo "<b>Total Prints sold </b>: " . $pncount. "<br>";
 	echo "<b>Total Auction Pieces sold </b>: " . $ancount . "<br>";
 	echo "<b>Total money made </b>: $" .  number_format($total_money,2). "<br>";
 	echo "<b>User who did most sales</b> : " . getUserWithMostSales($connection) . "<br>";
 	echo "<b>Total number of transactions so far</b> :" . count($receipts);
-
-	
-	//
-	
-
-
 ?>

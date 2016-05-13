@@ -5,10 +5,6 @@
 	require_once('inc/mysql.php');
 	require_once('template/an2015.php');
 	set_time_limit(0);
-	
-	
-
-
 
 //		--- HIGH PRIORITY ---
 //TODO : Code to set transaction as printed.
@@ -21,21 +17,16 @@
 
 //	sendToPrinter($template);
 
-
 while( true ) {
-
-
 	$receipts = findUnprintedReceipts($connection);
 	if (count( $receipts ) === 0 ){
 		//echo "Nothing to print, sleeping...\n";
 		sleep(2);
 	} else {
-
 		foreach($receipts as $receipt){
 			$itemsSold = generateReceiptInfo($connection, $receipt);
 			$receiptInfo = getReceiptInfo($connection, $receipt);
 			$user = getUserInfo($connection, $receiptInfo['userID']);
-
 
 			$user = $user['name'];
 			$purchases = implode(LF . " ". str_repeat('*-', 15) . LF, $itemsSold);
@@ -44,7 +35,7 @@ while( true ) {
 			$total = $receiptInfo['price'];
 			$paid = $receiptInfo['paid'];
 			$change = floatval($receiptInfo['paid']) - floatval($receiptInfo['price']);
-		
+
 			$final_receipt = $template;
 			$final_receipt = str_replace('%USER%'		, $user				, $final_receipt);
 			$final_receipt = str_replace('%PURCHASES%'	, $purchases			, $final_receipt);
@@ -57,9 +48,7 @@ while( true ) {
 			sendToPrinter($final_receipt);
 			setReceiptAsPrinted($connection, $receipt);
 			sleep(5);	// so we don't print too many at a time!
-			
 		}
 	}
 	//generateReceiptInfo($connection, 105);
-
 }

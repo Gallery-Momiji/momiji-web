@@ -1,5 +1,4 @@
 <?php
-
 	// TO REPLACE:
 	// %TRANSID% - Transaction ID / Receipt No.
 	// %PURCHASES% - obvious
@@ -8,9 +7,7 @@
 	// %CHANGE% - Obvious
 	// %USER%  - Person who processed this transaction.
 
-
     date_default_timezone_set('America/New_York');
-
 
 	$template =   BIG . "****************" .SBIG . LF;
 	$template .=  BIG . " GALLERY MOMIJI " .SBIG . LF;

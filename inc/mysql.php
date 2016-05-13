@@ -1,18 +1,14 @@
 <?php
-		
 	// function list:
 	// findUnprintedReceipts($conn);
 	// getUserInfo($conn, $id);
 	// queryDatabase( $conn, $sql );
-
 
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
 	if ($connection->connect_errno){
 		die('Connection to DB failed : ' . $connection->connect_error);
 	}
-
-
 
 	function queryDatabase( $conn, $query ){
 		$return = array();
@@ -48,24 +44,18 @@
 
         return $return;
 	}
-	
+
 	function getArtistInfo($connection, $artistID){
 		$database = queryDatabase($connection,"select * from `artists` where `ArtistID`= ". $connection->real_escape_string($artistID)  .";");
 		if (count($database) !== 1){
-			
 			die("Error : returned number of artists found with this ID did not match 1");
 		} else {
-			
 			return $database[0];
 		}
-		
-		
 	}
-	
+
 	function listDaysFromReceipts($connection){
 		$database = queryDatabase("select count(date(`date`)) as `total`, date(`date`) from `receipts` GROUP BY date(`date`);");
-		
-		
 	}
 
 	function getReceiptInfo( $connection, $receiptID ){
@@ -74,29 +64,23 @@
 			die( "ERROR : Attempted to grab info for receipt #$receiptID and for some reason, but got returned nothing :C" );
 		}
 		return $database[0];
-
-	}	
-
+	}
 
 	// Description : Finds unprinted receipts in database, returns in an array
-	// Parameters : 
+	// Parameters :
 	//	$connection - MySQLi connection object.
 	function findUnprintedReceipts( $connection ){
 		$database = queryDatabase( $connection, 'select `id` from `receipts` where `isPrinted` = 0;');
-		$return = array();	
+		$return = array();
 		foreach ($database as $key => $value){
 			$return[] = $value['id'] ;
 		}
 		unset ($database, $key, $value);
 		return $return;
-
 	}
-	
-
-
 
 	// Description : Returns information of a merchandise item based on his/her artist's ID number and its own ID number
-	// Parameters : 
+	// Parameters :
 	//	$connection 	- MySQLi connection object.
 	//	$ArtistID	- ID number of Artist
 	//	$MerchID	- ID number of the art piece
@@ -116,32 +100,25 @@
 		return $database[0];
 	}
 
-	
-	
 	function getReceiptsSummary($conn){
-		
 		$database = queryDatabase( $conn, "Select * from `receipts`;" );
 		return $database;
-		
 	}
 
-
 	function getUserWithMostSales($conn){
-		
 		$database = queryDatabase( $conn, "Select `userID`, count(`userID`) as `sales` from `receipts` GROUP BY `userID` limit 0,1;");
 		$userID = $database[0]['userID'];
 		return getUserInfo($conn, $userID)['name'];
 	}
 
 	// Description : Returns information of a user based on his/her ID number.
-	// Parameters : 
+	// Parameters :
 	//	$connection 	- MySQLi connection object.
 	//	$id		- ID number of user
 	function getUserInfo( $connection, $id ){
 		$return = queryDatabase( $connection, "select * from `users` where `id` = $id;");
 		if ( !count( $return ) ) {
 			die("ERROR : Failed to grab user info from user ID $id in function 'getUserInfo' of inc/mysql.php");
-
 		}
 		unset($query);
 		return $return[0];
@@ -149,14 +126,10 @@
 
 	function setReceiptAsPrinted($connection, $receipt){
 		$return = queryDatabase( $connection, "UPDATE `receipts` SET `isPrinted`=1 WHERE `id` = $receipt;");
-
 	}
-	
+
 	function findSales($connection, $artistID){
 		$query = "select * from `receipts` where `itemArray` LIKE '%AN".forceStringLength($artistID,3,0,true)."%' OR `itemArray` LIKE '%PN".forceStringLength($artistID,3,0,true)."%';";
 		$database = queryDatabase($connection, $query);
 		return $database;
-		
-		
 	}
-
