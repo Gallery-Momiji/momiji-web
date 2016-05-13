@@ -3,7 +3,7 @@ $.urlParam = function(name) {
 	if (results === null) return -1;
 	return results[1] || -1;
 }
-
+document.getElementById('terms').checked=false;
 if ($.urlParam('success') === "0"){
 	$('#fail_bidder').show();
 } else if ($.urlParam('error') === "1"){

@@ -12,7 +12,6 @@
 
 	function queryDatabase( $conn, $query ){
 		$return = array();
-		if(DEBUG)echo "SQL: $query\n";
 		$result = $conn->query($query);
 		if (!$result){
 			die("ERROR : The following query : \n$query\nCaused a MySQLi result to return false! Stopping...");
@@ -29,18 +28,15 @@
 	}
 
 	function addBidder($conn, $fields){
-        $database = queryDatabase( $conn, 'select MAX(`bidderno`)+1 as `next_num` FROM `bidders` limit 0,1;');
-        $return = array();
+        $database = queryDatabase( $conn, 'select MAX(`bidderno`) as `maxnum` FROM `bidders` limit 0,1;');
         //Fixme: not sure how to do this without a foreach:
         foreach ($database as $key => $value){
-            $return = $value['next_num'] ;
+            $return = $value['maxnum'] + 1;
         }
         unset ($database, $key, $value);
 
         $query = "INSERT INTO `bidders` (`bidderno`, `name`, `phoneno`, `eaddress`, `maddress`) VALUES (".$return.",'".$fields['name']."', '".$fields['pnumber']."', '".$fields['eaddress']."', '".$fields['maddress']."');";
         $result = queryDatabase($conn, $query);
-
-        var_dump($result); //I'm assuming this was just for debugging?
 
         return $return;
 	}
