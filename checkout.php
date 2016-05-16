@@ -13,7 +13,7 @@
 	$pns = array();
 	foreach ($salesArray as $key => $sale){
 		$items_sold_old = explode('#', trim($sale['itemArray'], "#"));
-		$items_sold = array_map('strtoupper',$items_sold_old); // silly tiago, caps are for kids ;) <3 meg
+		$items_sold = array_map('strtoupper',$items_sold_old);
 		$prices = explode('#', trim($sale['priceArray'], '#'));
 		foreach ($items_sold as $item_sold_key => $item_sold){
 			if(compareItemCodeWithID($item_sold, $_GET['id'])){
@@ -76,4 +76,9 @@
 	echo "Final Balance : <b>$" . number_format($total_after_commission,2) . "<br>";
 	echo "<hr><br><br><br>";
 	echo "Total of Auction/Gallery store balances : <b>$" . number_format(	$final_balance,2) . "</b>";
+	//TODO pending charges if applicable, total due/owed
+
+	echo "<br>Artist Signature:<br><br><br>";
+	echo "__________________________________________________"
+	echo "<br><i>Artist Name</i>";//TODO print artist name here
 ?>
