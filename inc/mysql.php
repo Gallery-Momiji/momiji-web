@@ -29,11 +29,8 @@
 
 	function addBidder($conn, $fields){
         $database = queryDatabase( $conn, 'select MAX(`bidderno`) as `maxnum` FROM `bidders` limit 0,1;');
-        //Fixme: not sure how to do this without a foreach:
-        foreach ($database as $key => $value){
-            $return = $value['maxnum'] + 1;
-        }
-        unset ($database, $key, $value);
+        $return = $database[0]['maxnum'] + 1;
+        unset ($database);
 
         $query = "INSERT INTO `bidders` (`bidderno`, `name`, `phoneno`, `eaddress`, `maddress`) VALUES (".$return.",'".$fields['name']."', '".$fields['pnumber']."', '".$fields['eaddress']."', '".$fields['maddress']."');";
         $result = queryDatabase($conn, $query);
