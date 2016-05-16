@@ -7,12 +7,10 @@
 	set_time_limit(0);
 
 //		--- HIGH PRIORITY ---
-//TODO : Code to set transaction as printed.
-//TODO : TEST THE FUCK OUT OF THIS
+//TODO : Test this (seems unreliable)
+//TODO : Work around when it crashes
 // 		--- LOW PRIORITY ---
-//TODO : Fix the chmod 777 fix, [LOW PRIORITY]
-//TODO : Make a GIT for this. Desperately needed!
-//TODO : Test this on raspbian. Needs to work there.
+//TODO : Fix the chmod 777 fix (likely with polkit)
 //TODO : Make a cron?
 
 //	sendToPrinter($template);

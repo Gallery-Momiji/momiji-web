@@ -93,5 +93,5 @@
 
 	echo "<br>Artist Signature:<br><br><br>";
 	echo "__________________________________________________"
-	echo "<br><i>" . $artistinfo['ArtistName'] . "</i>";//TODO print artist name here
+	echo "<br><i>" . $artistinfo['ArtistName'] . "</i>";
 ?>
