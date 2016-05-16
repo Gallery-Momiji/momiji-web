@@ -7,7 +7,7 @@
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
 	if ($connection->connect_errno){
-		die('Connection to DB failed : ' . $connection->connect_error);
+		die('ERROR : Connection to DB failed : ' . $connection->connect_error);
 	}
 
 	function queryDatabase( $conn, $query ){
@@ -39,9 +39,9 @@
 	}
 
 	function getArtistInfo($connection, $artistID){
-		$database = queryDatabase($connection,"select * from `artists` where `ArtistID`= ". $connection->real_escape_string($artistID)  .";");
+		$database = queryDatabase($connection,"select `ArtistName`,`ArtistDue` from `artists` where `ArtistID`= ". $connection->real_escape_string($artistID)  .";");
 		if (count($database) !== 1){
-			die("Error : returned number of artists found with this ID did not match 1");
+			die("ERROR : returned number of artists found with this ID did not match 1");
 		} else {
 			return $database[0];
 		}
@@ -52,9 +52,9 @@
 	}
 
 	function getReceiptInfo( $connection, $receiptID ){
-		$database = queryDatabase( $connection, "select * from `receipts` where `id` = $receiptID;" );
+		$database = queryDatabase( $connection, "select `userID`,`price`,`paid`,`itemArray`,`priceArray` from `receipts` where `id` = $receiptID;" );
 		if (!count( $database ) ){
-			die( "ERROR : Attempted to grab info for receipt #$receiptID and for some reason, but got returned nothing :C" );
+			die("ERROR : Attempted to query info for receipt #$receiptID but nothing was returned");
 		}
 		return $database[0];
 	}
@@ -78,23 +78,23 @@
 	//	$ArtistID	- ID number of Artist
 	//	$MerchID	- ID number of the art piece
 	function getMerchInfo($connection, $ArtistID, $MerchID){
-		$database = queryDatabase( $connection, "select * from `merchandise` where `ArtistID` = $ArtistID AND `MerchID` = $MerchID;" );
+		$database = queryDatabase( $connection, "select `MerchTitle` from `merchandise` where `ArtistID` = $ArtistID AND `MerchID` = $MerchID;" );
 		if (!count( $database ) ){
-			die( "ERROR : Attempted to grab merchandise info from AN$ArtistID-$MerchID for some reason, but got returned nothing :C" );
+			die("ERROR : Attempted to query merchandise info from AN$ArtistID-$MerchID but nothing was returned");
 		}
 		return $database[0];
 	}
 
 	function getGSMerchInfo($connection, $ArtistID, $PieceID){
-		$database = queryDatabase( $connection, "select * from `gsmerchandise` where `ArtistID` = $ArtistID AND `PieceID` = $PieceID;" );
+		$database = queryDatabase( $connection, "select `PieceTitle` from `gsmerchandise` where `ArtistID` = $ArtistID AND `PieceID` = $PieceID;" );
 		if (!count( $database ) ){
-			die( "ERROR : Attempted to grab gallery store merchandise info from PN$ArtistID-$PieceID for some reason, but got returned nothing :C" );
+			die("ERROR : Attempted to query gallery store merchandise info from PN$ArtistID-$PieceID but nothing was returned");
 		}
 		return $database[0];
 	}
 
 	function getReceiptsSummary($conn){
-		$database = queryDatabase( $conn, "Select * from `receipts`;" );
+		$database = queryDatabase( $conn, "Select `price`,`itemArray`,`priceArray`,`date` from `receipts`;" );
 		return $database;
 	}
 
@@ -109,9 +109,9 @@
 	//	$connection 	- MySQLi connection object.
 	//	$id		- ID number of user
 	function getUserInfo( $connection, $id ){
-		$return = queryDatabase( $connection, "select * from `users` where `id` = $id;");
+		$return = queryDatabase( $connection, "select `userID`,`name` from `users` where `id` = $id;");
 		if ( !count( $return ) ) {
-			die("ERROR : Failed to grab user info from user ID $id in function 'getUserInfo' of inc/mysql.php");
+			die("ERROR : Failed to query user info from user ID $id in function 'getUserInfo' of inc/mysql.php");
 		}
 		unset($query);
 		return $return[0];
@@ -122,7 +122,7 @@
 	}
 
 	function findSales($connection, $artistID){
-		$query = "select * from `receipts` where `itemArray` LIKE '%AN".forceStringLength($artistID,3,0,true)."%' OR `itemArray` LIKE '%PN".forceStringLength($artistID,3,0,true)."%';";
+		$query = "select `itemArray`,`priceArray` from `receipts` where `itemArray` LIKE '%AN".forceStringLength($artistID,3,0,true)."%' OR `itemArray` LIKE '%PN".forceStringLength($artistID,3,0,true)."%';";
 		$database = queryDatabase($connection, $query);
 		return $database;
 	}
