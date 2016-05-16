@@ -79,14 +79,14 @@
 	echo "<hr><br><br><br>";
 	echo "Total of Auction/Gallery store balances : <b>$" . number_format(	$final_balance,2) . "</b>";
 	$total_due = $final_balance;
-	if ($artistinfo['ArtistDue'] != 0){
-		echo "<br>Current Artist balance : <b>$" . number_format($artistinfo['ArtistDue'],2) . "</b>";
-		$total_due -= $artistinfo['ArtistDue'];
+	if (floatval($artistinfo['ArtistDue']) != 0){
+		echo "<br>Current Artist balance : <b>$" . number_format(floatval($artistinfo['ArtistDue']),2) . "</b>";
+		$total_due -= floatval($artistinfo['ArtistDue']);
 	}
 	if($total_due >= 0) {
 		echo "<br>Total due to artist : <b>$";
 	} else {
-		echo "<br>Total owed by artist : <b>$";
+		echo "<br>Total <b>owed</b> by artist : <b>$";
 		$final_balance = -$final_balance;
 	}
 	echo number_format(	$final_balance,2) . "</b>";
