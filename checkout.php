@@ -26,6 +26,8 @@
 			}
 		}
 	}
+
+	$artistinfo = getArtistInfo($connection, $_GET['id']);
 ?>
 
 
@@ -76,9 +78,20 @@
 	echo "Final Balance : <b>$" . number_format($total_after_commission,2) . "<br>";
 	echo "<hr><br><br><br>";
 	echo "Total of Auction/Gallery store balances : <b>$" . number_format(	$final_balance,2) . "</b>";
-	//TODO pending charges if applicable, total due/owed
+	$total_due = $final_balance;
+	if ($artistinfo['ArtistDue'] != 0){
+		echo "<br>Current Artist balance : <b>$" . number_format($artistinfo['ArtistDue'],2) . "</b>";
+		$total_due -= $artistinfo['ArtistDue'];
+	}
+	if($total_due >= 0) {
+		echo "<br>Total due to artist : <b>$";
+	} else {
+		echo "<br>Total owed by artist : <b>$";
+		$final_balance = -$final_balance;
+	}
+	echo number_format(	$final_balance,2) . "</b>";
 
 	echo "<br>Artist Signature:<br><br><br>";
 	echo "__________________________________________________"
-	echo "<br><i>Artist Name</i>";//TODO print artist name here
+	echo "<br><i>" . $artistinfo['ArtistName'] . "</i>";//TODO print artist name here
 ?>
