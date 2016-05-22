@@ -51,9 +51,9 @@
 	$total_after_commission = $total * (1-((INT)COMMISSION_AS / 100));
 	$final_balance += $total_after_commission;
 	echo "</tr></table>";
-	echo "Total made : <b>$" . number_format($total,2) . "</b><br>"; 
-	echo "Commission taken (<b>".COMMISSION_AS."%</b>): <b>$" . number_format($total - $total_after_commission,2) . "</b><br><hr>";
-	echo "Final Balance : <b>$" . number_format($total_after_commission,2) . "<br>";
+	echo "Total Sold : <b>$" . number_format($total,2) . "</b><br>"; 
+	echo "Gallery Commission (<b>".COMMISSION_AS."%</b>): <b>$" . number_format($total - $total_after_commission,2) . "</b><br><hr>";
+	echo "Final Balance : <b>$" . number_format($total_after_commission,2) . "</b><br>";
 ?>
 
 <h2>Gallery Store Sales :</h2>
@@ -74,25 +74,28 @@
 	$total_after_commission = $total * (1-((INT)COMMISSION_GS / 100));
 	$final_balance += $total_after_commission;
 	echo "</tr></table>";
-	echo "Total made : <b>$" . number_format($total,2) . "</b><br>";
-	echo "Commission taken (<b>".COMMISSION_GS."%</b>): <b>$" . number_format($total - $total_after_commission,2) . "</b><br><hr>";
-	echo "Final Balance : <b>$" . number_format($total_after_commission,2) . "<br>";
-	echo "<hr><br><br><br>";
-	echo "Total of Auction/Gallery store balances : <b>$" . number_format(	$final_balance,2) . "</b>";
+	echo "Total Sold : <b>$" . number_format($total,2) . "</b><br>";
+	echo "Gallery Commission (<b>".COMMISSION_GS."%</b>): <b>$" . number_format($total - $total_after_commission,2) . "</b><br><hr>";
+	echo "Final Balance : <b>$" . number_format($total_after_commission,2) . "</b><br>";
+?>
+
+<h2>Totals :</h2>
+<?php
+	echo "Total of Auction/Gallery Store Balances : <b>$" . number_format(	$final_balance,2) . "</b>";
 	$total_due = $final_balance;
 	if (floatval($artistinfo['ArtistDue']) != 0){
-		echo "<br>Current Artist balance : <b>$" . number_format(floatval($artistinfo['ArtistDue']),2) . "</b>";
+		echo "<br>Remaining Artist Balance : <b>$" . number_format(floatval($artistinfo['ArtistDue']),2) . "</b>";
 		$total_due -= floatval($artistinfo['ArtistDue']);
 	}
 	if($total_due >= 0) {
-		echo "<br>Total due to artist : <b>$";
+		echo "<h3>Total Due To Artist : <b>$";
 	} else {
-		echo "<br>Total <i>owed</i> by artist : <b>$";
+		echo "<h3>Total <i>Owed</i> By Artist : <b>$";
 		$total_due = -$total_due;
 	}
-	echo number_format(	$total_due,2) . "</b>";
+	echo number_format(	$total_due,2) . "</b></h3>";
 
-	echo "<br><br>Artist Signature:<br><br><br>";
+	echo "<hr><br><b>Artist Signature:</b><br><br><br>";
 	echo "__________________________________________________";
 	echo "<br><i>" . $artistinfo['ArtistName'] . "</i>";
 ?>
