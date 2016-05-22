@@ -1,3 +1,5 @@
+<img src="logo.png">
+
 <?php
 	echo "<pre>";
 
@@ -5,8 +7,8 @@
 	require_once('inc/util.php');
 	require_once('inc/mysql.php');
 
-	if (!isset($_GET['id'])){
-		die("Error : specify the artists' ID as a get parameter!");
+	if (!isset($_GET['id']) or $_GET['id'] == ""){
+		die("ERROR : specify the artist's <b><i>id</i></b> as a get parameter!");
 	}
 	$salesArray = findSales($connection, $_GET['id']);
 	$sales = array();
@@ -28,10 +30,9 @@
 	}
 
 	$artistinfo = getArtistInfo($connection, $_GET['id']);
+
+	echo "<h1>Artist #" . $_GET['id'] . " Sales Summary</h1>"
 ?>
-
-
-<img src="logo.png"><h1>Artist Sales Summary</h1>
 
 <h2>Auction/Quick Sales :</h2>
 <table border=1><tr>
@@ -86,12 +87,12 @@
 	if($total_due >= 0) {
 		echo "<br>Total due to artist : <b>$";
 	} else {
-		echo "<br>Total <b>owed</b> by artist : <b>$";
-		$final_balance = -$final_balance;
+		echo "<br>Total <i>owed</i> by artist : <b>$";
+		$total_due = -$total_due;
 	}
-	echo number_format(	$final_balance,2) . "</b>";
+	echo number_format(	$total_due,2) . "</b>";
 
-	echo "<br>Artist Signature:<br><br><br>";
-	echo "__________________________________________________"
+	echo "<br><br>Artist Signature:<br><br><br>";
+	echo "__________________________________________________";
 	echo "<br><i>" . $artistinfo['ArtistName'] . "</i>";
 ?>

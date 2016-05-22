@@ -40,8 +40,8 @@
 
 	function getArtistInfo($connection, $artistID){
 		$database = queryDatabase($connection,"select `ArtistName`,`ArtistDue` from `artists` where `ArtistID`= ". $connection->real_escape_string($artistID)  .";");
-		if (count($database) !== 1){
-			die("ERROR : returned number of artists found with this ID did not match 1");
+		if (!count($database)){
+			die("ERROR : Attempted to query artist with ID $artistID but nothing was returned");
 		} else {
 			return $database[0];
 		}
