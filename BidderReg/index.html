@@ -56,7 +56,7 @@
 	  <div class="alert alert-warning" style="display:none" role="alert" id="fail_bidder">
         <strong>Error:</strong> You must agree to the terms to register as a bidder.
       </div>
-        <form class="form-horizontal" action="submit.php" method="post">
+        <form class="form-horizontal" action="submit.php" method="post" id="bidderForm">
 			<fieldset>
 
 
@@ -64,8 +64,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="name">Name</label>  
 			  <div class="col-md-4">
-			  <input id="name" name="name" type="text" placeholder="First and Last" class="form-control input-md" required="">
-				
+			  <input autocomplete="off" id="name" name="name" type="text" placeholder="First and Last" minlength=2 class="form-control input-md" required="" for="inputWarning">
 			  </div>
 			</div>
 
@@ -73,7 +72,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="maddress">Mailing Address</label>
 			  <div class="col-md-4">                     
-				<textarea class="form-control" id="maddress" name="maddress"></textarea>
+				<textarea autocomplete="off" class="form-control input-md" id="maddress" name="maddress" minlength=10 required=""></textarea>
 			  </div>
 			</div>
 
@@ -81,8 +80,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="pnumber">Phone Number</label>  
 			  <div class="col-md-2">
-			  <input id="pnumber" name="pnumber" type="text" placeholder="###-###-####" class="form-control input-md" required="">
-				
+				<input autocomplete="off" id="pnumber" name="pnumber" type="tel" placeholder="###-###-####" class="form-control input-md" required="" pattern="\d{3}[\-]\d{3}[\-]\d{4}">
 			  </div>
 			</div>
 
@@ -90,8 +88,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="eaddress">Email Address</label>  
 			  <div class="col-md-4">
-			  <input id="eaddress" name="eaddress" type="text" placeholder="me@website.com" class="form-control input-md" required="">
-				
+				<input autocomplete="off" id="eaddress" name="eaddress" type="email" placeholder="me@website.com" class="form-control input-md" required="">
 			  </div>
 			</div>
 
@@ -132,7 +129,7 @@ Clicking the checkbox below acknowledges that you understand, agree and shall co
 			  <div class="col-md-4">
 			  <div class="checkbox">
 				<label for="checkboxes-0">
-				  <input type="checkbox" name="terms" id="terms" value="1" onClick="document.getElementById('submit').disabled=!checked">
+				  <input type="checkbox" name="terms" id="terms">
 				  I agree to all terms and conditions listed above
 				</label>
 				</div>
@@ -163,7 +160,7 @@ Clicking the checkbox below acknowledges that you understand, agree and shall co
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
-
+		<script src="js/urlParam.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
