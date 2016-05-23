@@ -42,7 +42,7 @@
 	}
 
 	function validate_terms($value){
-		if ($value !== '1'){
+		if ($value !== 'on'){
 			header('Location: index.html?success=0');
 		} else {
 			$valid = true;
