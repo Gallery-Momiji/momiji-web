@@ -14,7 +14,7 @@
 		$return = array();
 		$result = $conn->query($query);
 		if (!$result){
-			die("ERROR : The following query : \n$query\nCaused a MySQLi result to return false! Stopping...");
+			return false;
 		}
 		if ($result === true){
 			return true;
@@ -34,6 +34,11 @@
 
         $query = "INSERT INTO `bidders` (`bidderno`, `name`, `phoneno`, `eaddress`, `maddress`) VALUES (".$return.",'".$fields['name']."', '".$fields['pnumber']."', '".$fields['eaddress']."', '".$fields['maddress']."');";
         $result = queryDatabase($conn, $query);
+	
+		if ( false === $result){
+			header('Location: index.html?error=1');
+			die();
+		}
 
         return $return;
 	}
