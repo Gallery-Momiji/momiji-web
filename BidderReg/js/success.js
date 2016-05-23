@@ -1,6 +1,6 @@
-var results = new RegExp('[\?&amp;]bidder=([^&amp;#]*)').exec(window.location.search);
-if (results === null) {
-	window.location.href="index.html?error=1";
+var bidder = $.urlParam('bidder');
+if ( bidder ){
+	$('#bannermessage').append("<strong>"+bidder+"</strong>");
 } else {
-	$('#bannermessage').append("<strong>"+results[1]+"</strong>");
+	window.location.href="index.html?error=1";
 }
