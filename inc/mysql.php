@@ -1,8 +1,9 @@
 <?php
 	// function list:
 	// findUnprintedReceipts($conn);
+	// getReceiptInfo($conn, $receiptID);
 	// getUserInfo($conn, $id);
-	// queryDatabase( $conn, $sql );
+	// queryDatabase($conn, $sql);
 
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
@@ -57,7 +58,7 @@
 	}
 
 	function getReceiptInfo( $connection, $receiptID ){
-		$database = queryDatabase( $connection, "select `userID`,`price`,`paid`,`itemArray`,`priceArray` from `receipts` where `id` = $receiptID;" );
+		$database = queryDatabase( $connection, "select `userID`,`price`,`paid`,`itemArray`,`priceArray`,`timestamp`,`date` from `receipts` where `id` = $receiptID;" );
 		if (!count( $database ) ){
 			die("ERROR : Attempted to query info for receipt #$receiptID but nothing was returned");
 		}
