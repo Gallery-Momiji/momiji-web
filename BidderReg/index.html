@@ -78,17 +78,17 @@
 
 			<!-- Phone input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="pnumber">Phone Number</label>  
+			  <label class="col-md-4 control-label" for="pnumber">Phone Number<br><i>(for example: ###-###-####)</i></label>
 			  <div class="col-md-2">
-				<input autocomplete="off" id="pnumber" name="pnumber" type="tel" placeholder="###-###-####" class="form-control input-md" required="" pattern="\d{3}[\-]\d{3}[\-]\d{4}">
+				<input autocomplete="off" id="pnumber" name="pnumber" type="tel" placeholder="###-###-####" class="form-control input-md" required="" pattern="[0-9(+][x0-9(),.+ -]{8,}[0-9]">
 			  </div>
 			</div>
 
 			<!-- Email input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="eaddress">Email Address</label>  
+			  <label class="col-md-4 control-label" for="eaddress">Email Address<br><i>(for example: me@website.com)</i></label>
 			  <div class="col-md-4">
-				<input autocomplete="off" id="eaddress" name="eaddress" type="email" placeholder="me@website.com" class="form-control input-md" required="">
+				<input autocomplete="off" id="eaddress" name="eaddress" type="email" placeholder="me@website.com" class="form-control input-md" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 			  </div>
 			</div>
 
