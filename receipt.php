@@ -7,7 +7,7 @@
 		die("ERROR : specify the receipt <b><i>id</i></b> as a get parameter!");
 	}
 
-    $receipt = $_GET['id'];
+	$receipt = $_GET['id'];
 	$receiptInfo = getReceiptInfo($connection, $receipt);
 
 	$time = $receiptInfo['timestamp'];
@@ -22,9 +22,8 @@
 	$prices = trim($receiptInfo['priceArray'], '#');
 	$prices = explode( '#', $prices);
 
-	$ttlitems = count($items);
+	setReceiptAsPrinted($connection, $receipt);
 ?>
-
 <!doctype html>
 <html>
 <head>
@@ -137,17 +136,17 @@
           </td>
           <td>
 <?php
-	echo $receipt;
+	echo "           " . $receipt . "\n";
 ?>
           </td>
          </tr>
          <tr>
           <td>
-           Date:</b>
+           <b>Date:</b>
           </td>
           <td>
 <?php
-	echo $date;
+	echo "           " . $date . "\n";
 ?>
           </td>
          </tr>
@@ -157,7 +156,7 @@
           </td>
           <td>
 <?php
-	echo $time;
+	echo "           " . $time . "\n";
 ?>
           </td>
          </tr>
@@ -189,12 +188,12 @@
 		$identifier = evalUID($item);
 		if (isGS($item)){
 			$temp = getGSMerchInfo($connection, $identifier['artist'], $identifier['piece']);
-			echo '<tr class="item"><td>' . $temp['PieceTitle'] . "</td>";
+			echo '   <tr class="item"><td>' . $temp['PieceTitle'] . "</td>\n";
 		} else {
 			$temp = getMerchInfo($connection, $identifier['artist'], $identifier['piece']);
-			echo '<tr class="item"><td>' . $temp['MerchTitle'] . "</td>";
+			echo '   <tr class="item"><td>' . $temp['MerchTitle'] . "</td>\n";
 		}
-        echo '<td>$' . number_format($prices[$key],2) . "</td></tr>";
+		echo '   <td>$' . number_format($prices[$key],2) . "</td></tr>\n";
 	}
 ?>
    <tr>
@@ -208,7 +207,7 @@
        </td>
        <td>
 <?php
-	echo "$" . number_format($total,2);
+	echo "        $" . number_format($total,2) . "\n";
 ?>
        </td>
       </tr>
@@ -218,7 +217,7 @@
        </td>
        <td>
 <?php
-	echo "$" . number_format($paid,2);
+	echo "        $" . number_format($paid,2) . "\n";
 ?>
        </td>
       </tr>
@@ -228,7 +227,7 @@
        </td>
        <td>
 <?php
-	echo "$" . number_format($change,2);
+	echo "        $" . number_format($change,2) . "\n";
 ?>
        </td>
       </tr>
