@@ -142,3 +142,13 @@
 		$database = queryDatabase( $connection, "select `PieceTitle`,`PiecePrice`,`PieceInitialStock`,`PieceSDC` from `gsmerchandise` where `ArtistID` = $ArtistID;" );
 		return $database;
 	}
+
+	function findUnsoldAuctionItems($connection, $ArtistID){
+		$database = queryDatabase( $connection, "select `MerchTitle`,`MerchID` from `merchandise` where `ArtistID` = $ArtistID AND `MerchSold` != 1;" );
+		return $database;
+	}
+
+	function findUnsoldGSItems($connection, $ArtistID){
+		$database = queryDatabase( $connection, "select `PieceTitle`,`PieceID`,`PieceStock` from `gsmerchandise` where `ArtistID` = $ArtistID AND `PieceStock` > 0;" );
+		return $database;
+	}
