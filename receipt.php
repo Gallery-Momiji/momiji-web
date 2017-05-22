@@ -156,7 +156,7 @@
           </td>
           <td>
 <?php
-	echo "           " . $time . "\n";
+	echo "           " . date('H:i', strtotime($time)) . "\n";
 ?>
           </td>
          </tr>
