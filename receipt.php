@@ -47,11 +47,6 @@
    padding:5px;
    vertical-align:top;
   }
-
-  .invoice-box table tr td:nth-child(2){
-   text-align:right;
-  }
-
   .invoice-box table tr.top table td{
    padding-bottom:20px;
   }
@@ -62,9 +57,14 @@
    color:#333;
   }
 
-  .invoice-box table tr.information table td{
-   width:99%
+  .invoice-box table td.information{
+   width:75%;
   }
+
+  .invoice-box table tr td:nth-child(3){
+   text-align:right;
+  }
+
 
   .invoice-box table tr.heading td{
    background:#eee;
@@ -80,13 +80,25 @@
    border-bottom:1px solid #eee;
   }
 
+  .invoice-box table td.moreinfo{
+   text-align:right;
+  }
+
   .invoice-box table tr.total td{
    border-bottom:2px solid #eee;
    font-weight:bold;
   }
 
+  .invoice-box table tr.total td:nth-child(2){
+   text-align:right;
+  }
+
   .invoice-box table tr.paid td{
    border-bottom:2px solid #eee;
+  }
+
+  .invoice-box table tr.paid td:nth-child(2){
+   text-align:right;
   }
 
   @media only screen and (max-width: 600px) {
@@ -96,7 +108,7 @@
     text-align:center;
    }
 
-   .invoice-box table tr.information table td{
+   .invoice-box table td.information table td{
     width:100%;
     display:block;
     text-align:center;
@@ -134,7 +146,7 @@
           <td>
            <b>Invoice Number:</b>
           </td>
-          <td>
+          <td class="moreinfo">
 <?php
 	echo "           " . $receipt . "\n";
 ?>
@@ -144,7 +156,7 @@
           <td>
            <b>Date:</b>
           </td>
-          <td>
+          <td class="moreinfo">
 <?php
 	echo "           " . $date . "\n";
 ?>
@@ -154,7 +166,7 @@
           <td>
            <b>Time:</b>
           </td>
-          <td>
+          <td class="moreinfo">
 <?php
 	echo "           " . date('H:i', strtotime($time)) . "\n";
 ?>
@@ -173,7 +185,10 @@
    </tr>
    <tr class="heading">
     <td>
-     Items
+     Item number
+    </td>
+    <td>
+     Description
     </td>
     <td>
      Price
@@ -185,21 +200,22 @@
 			//WARNING : Found an empty entry in receipt #$receiptID, ignoring
 			continue;
 		}
+		echo '   <tr class="item"><td>' . $item . "</td>\n";
 		$identifier = evalUID($item);
 		if (isGS($item)){
 			$temp = getGSMerchInfo($connection, $identifier['artist'], $identifier['piece']);
-			echo '   <tr class="item"><td>' . $temp['PieceTitle'] . "</td>\n";
+			echo '   <td>' . $temp['PieceTitle'] . "</td>\n";
 		} else {
 			$temp = getMerchInfo($connection, $identifier['artist'], $identifier['piece']);
-			echo '   <tr class="item"><td>' . $temp['MerchTitle'] . "</td>\n";
+			echo '   <td>' . $temp['MerchTitle'] . "</td>\n";
 		}
 		echo '   <td>$' . number_format($prices[$key],2) . "</td></tr>\n";
 	}
 ?>
    <tr>
-    <td>
+    <td class="information">
     </td>
-    <td class="item">
+    <td colspan="2">
      <table>
       <tr class="total">
        <td>
