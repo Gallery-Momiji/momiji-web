@@ -10,7 +10,8 @@
 	if (!isset($_GET['id']) or $_GET['id'] == ""){
 		die("ERROR : specify the artist's <b><i>id</i></b> as a get parameter!");
 	}
-	$salesArray = findSales($connection, $_GET['id']);
+	$artistid = $_GET['id'];
+	$salesArray = findSales($connection, $artistid);
 	$sales = array();
 	$pns = array();
 	foreach ($salesArray as $key => $sale){
@@ -18,7 +19,7 @@
 		$items_sold = array_map('strtoupper',$items_sold_old);
 		$prices = explode('#', trim($sale['priceArray'], '#'));
 		foreach ($items_sold as $item_sold_key => $item_sold){
-			if(compareItemCodeWithID($item_sold, $_GET['id'])){
+			if(compareItemCodeWithID($item_sold, $artistid)){
 				if(isGS($item_sold)){
 					$sales[$item_sold] = $prices[$item_sold_key];
 					$pns[$item_sold]++;
@@ -29,9 +30,10 @@
 		}
 	}
 
-	$artistinfo = getArtistInfo($connection, $_GET['id']);
+	$artistinfo = getArtistInfo($connection, $artistid);
 
-	echo "<h1>Artist #" . $_GET['id'] . " Sales Summary</h1>"
+	echo "<h1>Artist #" . $artistid . " Sales Summary</h1>";
+	$final_balance = 0.0;
 ?>
 
 <h2>Auction/Quick Sales :</h2>
