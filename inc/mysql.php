@@ -58,7 +58,7 @@
 	}
 
 	function getReceiptInfo( $connection, $receiptID ){
-		$database = queryDatabase( $connection, "select `userID`,`price`,`paid`,`itemArray`,`priceArray`,`timestamp`,`date` from `receipts` where `id` = $receiptID;" );
+		$database = queryDatabase( $connection, "select `userID`,`price`,`paid`,`itemArray`,`priceArray`,`timestamp`,`date`,`Last4digitsCard` from `receipts` where `id` = $receiptID;" );
 		if (!count( $database ) ){
 			die("ERROR : Attempted to query info for receipt #$receiptID but nothing was returned");
 		}
