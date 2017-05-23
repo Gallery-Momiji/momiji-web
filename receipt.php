@@ -14,6 +14,11 @@
 	$date = $receiptInfo['date'];
 	$total = $receiptInfo['price'];
 	$paid = $receiptInfo['paid'];
+	$creditcardnumber= $receiptInfo['$Last4digitsCard'];
+	if ($creditcardnumber != '0'){
+		//Not technically correct for AMEX, but good enough:
+		$creditcardnumber = forceStringLength(forceStringLength($creditcardnumber,4,0,true),16,'*',true);
+	}
 	$change = floatval($receiptInfo['paid']) - floatval($receiptInfo['price']);
 
 	$items = trim($receiptInfo['itemArray'], '#');
@@ -239,11 +244,18 @@
       </tr>
       <tr class="paid">
        <td>
-        Change:
-       </td>
-       <td>
 <?php
-	echo "        $" . number_format($change,2) . "\n";
+	if ($creditcardnumber == '0'){
+		echo "        Change:\n";
+		echo "       </td>\n";
+		echo "       <td>\n";
+		echo "        $" . number_format($change,2) . "\n";
+	} else {
+		echo "        Card Number:\n";
+		echo "       </td>\n";
+		echo "       <td>\n";
+		echo "        " . $creditcardnumber . "\n";
+	}
 ?>
        </td>
       </tr>
