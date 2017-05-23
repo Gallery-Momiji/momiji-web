@@ -2,7 +2,7 @@
 <html>
 <head>
  <meta charset="utf-8">
- <title>Artist Checkin Summary</title>
+ <title>Artist Check-In Summary</title>
  <style>
 
   .misc-box table{
@@ -50,7 +50,7 @@
 
 	$artistinfo = getArtistInfo($connection, $artistid);
 
-	echo "<h1>Artist #" . $artistid . " Checkin Item Summary</h1>\n"
+	echo "<h1>Artist #" . $artistid . " Check-In Item Summary</h1>\n"
 ?>
   <h3>Auction Items:</h3>
   <table>
@@ -99,7 +99,7 @@
   By signing below, the artist agrees to the following terms:
   <ul>
    <li>That all items listed above are accounted for and have been handed over to the procession of Gallery Momiji.</li>
-   <li>Any mistake made by the artist prior to the checkin process, including, but not limited to, missing and damaged items, does infers any liability to Gallery Momiji.</li>
+   <li>Any mistake made by the artist prior to the check-in process, including, but not limited to, missing and damaged items, does infers any liability to Gallery Momiji.</li>
    <li>Our terms are clear and are acknowledged by the artist; the artist has read, understands, and consents to our artist contract.</li>
   </ul>   
 <?php
