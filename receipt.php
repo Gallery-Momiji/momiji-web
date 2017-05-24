@@ -14,7 +14,7 @@
 	$date = $receiptInfo['date'];
 	$total = $receiptInfo['price'];
 	$paid = $receiptInfo['paid'];
-	$creditcardnumber= $receiptInfo['$Last4digitsCard'];
+	$creditcardnumber= $receiptInfo['Last4digitsCard'];
 	if ($creditcardnumber != '0'){
 		//Not technically correct for AMEX, but good enough:
 		$creditcardnumber = forceStringLength(forceStringLength($creditcardnumber,4,0,true),16,'*',true);
@@ -149,7 +149,7 @@
         <table>
          <tr>
           <td>
-           <b>Invoice Number:</b>
+           <b>Receipt Number:</b>
           </td>
           <td class="moreinfo">
 <?php
@@ -234,7 +234,13 @@
       </tr>
       <tr class="paid">
        <td>
-        Paid:
+<?php
+	if ($creditcardnumber == '0'){
+		echo "        Paid (Cash):\n";
+	} else {
+		echo "        Paid (Credit):\n";
+	}
+?>
        </td>
        <td>
 <?php
@@ -247,13 +253,16 @@
 <?php
 	if ($creditcardnumber == '0'){
 		echo "        Change:\n";
-		echo "       </td>\n";
-		echo "       <td>\n";
+	} else {
+		echo "        Credit Card Number:\n";
+	}
+?>
+       </td>
+       <td>
+<?php
+	if ($creditcardnumber == '0'){
 		echo "        $" . number_format($change,2) . "\n";
 	} else {
-		echo "        Card Number:\n";
-		echo "       </td>\n";
-		echo "       <td>\n";
 		echo "        " . $creditcardnumber . "\n";
 	}
 ?>
