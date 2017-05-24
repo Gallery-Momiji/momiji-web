@@ -2,7 +2,7 @@
 <html>
 <head>
  <meta charset="utf-8">
- <title>Artist Checkin Summary</title>
+ <title>Artist Control Sheet Summary</title>
  <style>
 
   .misc-box table{
@@ -50,7 +50,7 @@
 
 	$artistinfo = getArtistInfo($connection, $artistid);
 
-	echo "<h1>Artist #" . $artistid . " Checkin Item Summary</h1>\n"
+	echo "<h1>Artist #" . $artistid . " Control Sheet Summary</h1>\n"
 ?>
   <h3>Auction Items:</h3>
   <table>
@@ -96,11 +96,15 @@
 	echo "<b>Total Items: " . count($gsitems) . "</b>\n";
 ?>
   <h2>Agreement:</h2>
-  By signing below, the artist agrees to the following terms:
+  By signing below, you, the artist, agrees to the following terms:
   <ul>
-   <li>That all items listed above are accounted for and have been handed over to the procession of Gallery Momiji.</li>
-   <li>Any mistake made by the artist prior to the checkin process, including, but not limited to, missing and damaged items, does infers any liability to Gallery Momiji.</li>
-   <li>Our terms are clear and are acknowledged by the artist; the artist has read, understands, and consents to our artist contract.</li>
+   <li>All of the above information is correct and requires no additional changes.
+   <li>Your art has been hung correctly on your panel and/or placed correctly on your table.</li>
+   <li>Gallery Momiji will not take responsibility for any art that becomes damaged due to incorrect hanging or table placement.</li>
+   <li>All bid sheets are visible and are not hanging off the side or bottom of a panel or table.</li>
+   <li>All prints for the Gallery Store have been counted correctly (if applicable).</li>
+   <li>A 10% commission will be charged on all sales, both in the Gallery and the Gallery Store.</li>
+   <li>All profits will be given in the form of a cheque upon successful checkout on Sunday.</li>
   </ul>   
 <?php
 	echo "<p><b>Date: " . date('dS M Y') . "</b></p>\n";

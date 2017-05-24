@@ -9,4 +9,4 @@
 
 	// Percentages for comission (GS - Gallery Store, AS - Auction Store)
 	define('COMMISSION_GS', 10);
-	define('COMMISSION_AS', 5);
+	define('COMMISSION_AS', 10);
