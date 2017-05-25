@@ -4,9 +4,9 @@
 	require_once('inc/mysql.php');
 
 	if (!isset($_GET['id']) or $_GET['id'] == ""){
-		//die("ERROR : specify the artist's <b><i>id</i></b> as a get parameter!");
+		die("ERROR : specify the artist's <b><i>id</i></b> as a get parameter!");
 	}
-	$artistid = 2;//$_GET['id'];
+	$artistid = $_GET['id'];
 	$auctionitems = findAuctionItems($connection, $artistid);
 	$gsitems = findGSItems($connection, $artistid);
 
