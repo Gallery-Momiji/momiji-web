@@ -1,3 +1,22 @@
+<?php
+	require_once('config.php');
+	require_once('inc/util.php');
+	require_once('inc/mysql.php');
+
+	if (!isset($_GET['id']) or $_GET['id'] == ""){
+		//die("ERROR : specify the artist's <b><i>id</i></b> as a get parameter!");
+	}
+	$artistid = 2;//$_GET['id'];
+	$auctionitems = findAuctionItems($connection, $artistid);
+	$gsitems = findGSItems($connection, $artistid);
+
+	$artistinfo = getArtistInfo($connection, $artistid);
+	$owed = floatval($artistinfo['ArtistDue']);
+
+	if (!isset($_GET['fee']) or $_GET['fee'] == ""){
+		$owed += floatval($_GET['fee']);
+	}
+?>
 <!doctype html>
 <html>
 <head>
@@ -35,21 +54,7 @@
 <body>
  <img src="logo.png">
  <div class="misc-box">
- <?php
-
-	require_once('config.php');
-	require_once('inc/util.php');
-	require_once('inc/mysql.php');
-
-	if (!isset($_GET['id']) or $_GET['id'] == ""){
-		die("ERROR : specify the artist's <b><i>id</i></b> as a get parameter!");
-	}
-	$artistid = $_GET['id'];
-	$auctionitems = findAuctionItems($connection, $artistid);
-	$gsitems = findGSItems($connection, $artistid);
-
-	$artistinfo = getArtistInfo($connection, $artistid);
-
+<?php
 	echo "<h1>Artist #" . $artistid . " Control Sheet Summary</h1>\n"
 ?>
   <h3>Auction Items:</h3>
@@ -105,7 +110,13 @@
    <li>All prints for the Gallery Store have been counted correctly (if applicable).</li>
    <li>A 10% commission will be charged on all sales, both in the Gallery and the Gallery Store.</li>
    <li>All profits will be given in the form of a cheque upon successful checkout on Sunday.</li>
-  </ul>   
+<?php
+	if ($owed > 0){
+		echo"   <li>You have a unpaid balance of <b><i>$" . number_format($owed,2) . "</b></i>, which will be deducted from your sales at check-out on Sunday.</li>";
+		echo"   <li>In the event of unpaid fees, Gallery Momiji reserves the right to withhold your artwork until fees are paid.</li>";
+	}
+?>
+  </ul>
 <?php
 	echo "<p><b>Date: " . date('dS M Y') . "</b></p>\n";
 	echo "<b>Artist Signature:</b><br><br><br>\n";
