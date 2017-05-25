@@ -63,7 +63,7 @@
   }
 
   .invoice-box table td.information{
-   width:75%;
+   width:60%;
   }
 
   .invoice-box table tr td:nth-child(3){
@@ -130,7 +130,7 @@
      <table>
       <tr>
        <td class="title">
-        <img src="logo.png"">
+        <img src="header.jpg" width=100%>
        </td>
       </tr>
      </table>
@@ -143,7 +143,7 @@
        <td class="information">
         <b>Gallery Momiji</b><br>
         Anime North<br>
-        <i>Canada's top not-for-profit fan event</i>
+        <i>www.animenorth.com</i>
        </td>
        <td>
         <table>
