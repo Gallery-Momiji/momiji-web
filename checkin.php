@@ -13,7 +13,7 @@
 	$artistinfo = getArtistInfo($connection, $artistid);
 	$owed = floatval($artistinfo['ArtistDue']);
 
-	if (!isset($_GET['fee']) or $_GET['fee'] == ""){
+	if (isset($_GET['fee']) and $_GET['fee'] != ""){
 		$owed += floatval($_GET['fee']);
 	}
 ?>
