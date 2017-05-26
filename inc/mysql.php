@@ -134,12 +134,12 @@
 	}
 
 	function findAuctionItems($connection, $ArtistID){
-		$database = queryDatabase( $connection, "select `MerchTitle`,`MerchMinBid`,`MerchAAMB`,`MerchQuickSale` from `merchandise` where `ArtistID` = $ArtistID;" );
+		$database = queryDatabase( $connection, "select `MerchID`, `MerchTitle`,`MerchMinBid`,`MerchAAMB`,`MerchQuickSale` from `merchandise` where `ArtistID` = $ArtistID;" );
 		return $database;
 	}
 
 	function findGSItems($connection, $ArtistID){
-		$database = queryDatabase( $connection, "select `PieceTitle`,`PiecePrice`,`PieceInitialStock`,`PieceSDC` from `gsmerchandise` where `ArtistID` = $ArtistID;" );
+		$database = queryDatabase( $connection, "select `PieceID`, `PieceTitle`,`PiecePrice`,`PieceInitialStock`,`PieceSDC` from `gsmerchandise` where `ArtistID` = $ArtistID;" );
 		return $database;
 	}
 

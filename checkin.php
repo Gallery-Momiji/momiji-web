@@ -67,7 +67,8 @@
    </tr>
 <?php
 	foreach ($auctionitems as $key => $item){
-		echo "<tr class=\"item\">\n<td>" . $item['MerchTitle'] . "</td>\n";
+		echo "<tr class=\"item\">\n<td>" . $item['MerchID'] . "</td>\n";
+		echo "<td>" . $item['MerchTitle'] . "</td>\n";
 		echo "<td>$" . number_format($item['MerchMinBid'],2) . "</td>\n";
 		echo "<td>$" . number_format($item['MerchQuickSale'],2) . "</td>\n";
 		if ($item['MerchAAMB'] == "0")
@@ -89,7 +90,8 @@
    <tr>
 <?php
 	foreach ($gsitems as $key => $item){
-		echo "<tr class=\"item\">\n<td>" . $item['PieceTitle'] . "</td>\n";
+		echo "<tr class=\"item\">\n<td>" . $item['PieceID'] . "</td>\n";
+		echo "<td>" . $item['PieceTitle'] . "</td>\n";
 		echo "<td>$" . number_format($item['PiecePrice'],2) . "</td>\n";
 		echo "<td>" . $item['PieceInitialStock'] . "</td>\n";
 		if ($item['PieceSDC'] == "0")
