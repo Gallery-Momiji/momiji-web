@@ -24,6 +24,13 @@
  <title>Artist Control Sheet Summary</title>
  <style>
 
+  .agreement {
+   position: relative;
+   page-break-inside: avoid;
+   line-height:inherit;
+   text-align:left;
+  }
+
   .misc-box table{
    width:100%;
    line-height:inherit;
@@ -60,6 +67,7 @@
   <h3>Auction Items:</h3>
   <table>
    <tr class="heading">
+    <td>Piece ID</td>
     <td>Piece Title</td>
     <td>Min Bid</td>
     <td>Quick Sale</td>
@@ -67,7 +75,7 @@
    </tr>
 <?php
 	foreach ($auctionitems as $key => $item){
-		echo "<tr class=\"item\">\n<td>" . $item['MerchID'] . "</td>\n";
+		echo "<tr class=\"item\">\n<td>AN" . forceStringLength($artistid,3,0,true) . "-" . forceStringLength($item['MerchID'],3,0,true) . "</td>\n";
 		echo "<td>" . $item['MerchTitle'] . "</td>\n";
 		echo "<td>$" . number_format($item['MerchMinBid'],2) . "</td>\n";
 		echo "<td>$" . number_format($item['MerchQuickSale'],2) . "</td>\n";
@@ -82,6 +90,7 @@
   <h3>Gallery Store Items:</h3>
   <table>
    <tr class="heading">
+    <td>Piece ID</td>
     <td>Piece Title</td>
     <td>Price</td>
     <td>Stock</td>
@@ -90,7 +99,7 @@
    <tr>
 <?php
 	foreach ($gsitems as $key => $item){
-		echo "<tr class=\"item\">\n<td>" . $item['PieceID'] . "</td>\n";
+		echo "<tr class=\"item\">\n<td>PN" . forceStringLength($artistid,3,0,true) . "-" . forceStringLength($item['PieceID'],3,0,true) . "</td>\n";
 		echo "<td>" . $item['PieceTitle'] . "</td>\n";
 		echo "<td>$" . number_format($item['PiecePrice'],2) . "</td>\n";
 		echo "<td>" . $item['PieceInitialStock'] . "</td>\n";
@@ -102,6 +111,8 @@
 	echo "</table>\n";
 	echo "<b>Total Items: " . count($gsitems) . "</b>\n";
 ?>
+ </div>
+ <div class="agreement">
   <h2>Agreement:</h2>
   By signing below, you, the artist, agrees to the following terms:
   <ul>
