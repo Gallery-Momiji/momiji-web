@@ -29,11 +29,7 @@
 	}
 
 	function addBidder($conn, $fields){
-        $database = queryDatabase( $conn, 'select MAX(`bidderno`) as `maxnum` FROM `bidders` limit 0,1;');
-        $return = $database[0]['maxnum'] + 1;
-        unset ($database);
-
-        $query = "INSERT INTO `bidders` (`bidderno`, `name`, `phoneno`, `eaddress`, `maddress`) VALUES (".$return.",'".$fields['name']."', '".$fields['pnumber']."', '".$fields['eaddress']."', '".$fields['maddress']."');";
+        $query = "INSERT INTO `bidders` (`name`, `phoneno`, `eaddress`, `maddress`) VALUES (".$fields['name']."', '".$fields['pnumber']."', '".$fields['eaddress']."', '".$fields['maddress']."'); SELECT LAST_INSERT_ID() as `id`;";
         $result = queryDatabase($conn, $query);
 	
 		if ( false === $result){
@@ -41,7 +37,7 @@
 			die();
 		}
 
-        return $return;
+        return $result[0]['id'];
 	}
 
 	function getArtistInfo($connection, $artistID){
