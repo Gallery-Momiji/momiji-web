@@ -6,6 +6,7 @@
 
 		$cashsales = 0;
 		$creditcardsales = 0;
+		$commission = 0;
 		$line = 0;
 		$pncount = 0;
 		$ancount = 0;
@@ -14,9 +15,14 @@
 		$receipts = getReceiptsSummary($connection);
 		foreach ($receipts as $receipt){
 			if($receipt['Last4digitsCard'] != '0'){
-				$creditcardsales = $creditcardsales + $receipt['price'];
+				$creditcardsales += $receipt['price'];
 			} else {
-				$cashsales = $cashsales + $receipt['price'];
+				$cashsales += $receipt['price'];
+			}
+			if($receipt['isGalleryStoreSale'] != '0'){
+					$commission += ($receipt['price'] / 100.0) * COMMISSION_GS;
+			} else {
+					$commission += ($receipt['price'] / 100.0) * COMMISSION_AS;
 			}
 			$items = explode("#", trim($receipt['itemArray'], '#'));
 			$prices = explode("#", trim($receipt['priceArray'], '#'));
@@ -70,5 +76,5 @@
 	echo "<b>Total number of transactions </b>:" . count($receipts). "<br>";
 	echo "<b>Total gross cash sales</b>: $" .  number_format($cashsales,2). "<br>";
 	echo "<b>Total gross credit card sales</b>: $" .  number_format($creditcardsales,2). "<br>";
-	echo "<b>Total commission made</b>: $" .  number_format($total_money * (1-((INT)COMMISSION_GS / 100)),2);
+	echo "<b>Total commission made</b>: $" .  number_format($commission,2);
 ?>
