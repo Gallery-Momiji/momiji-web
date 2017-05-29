@@ -29,7 +29,7 @@
 	}
 
 	function removeQuotes($str){
-		return str_replace('"','',$str);
+		return str_replace('"',"",$str);
 	}
 
 	function addBidder($conn, $fields){
