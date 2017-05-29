@@ -106,14 +106,8 @@
 	}
 
 	function getReceiptsSummary($conn){
-		$database = queryDatabase( $conn, "Select `price`,`itemArray`,`priceArray`,`date` from `receipts`;" );
+		$database = queryDatabase( $conn, "Select `price`,`itemArray`,`priceArray`,`Last4digitsCard`,`date` from `receipts`;" );
 		return $database;
-	}
-
-	function getUserWithMostSales($conn){
-		$database = queryDatabase( $conn, "Select `userID`, count(`userID`) as `sales` from `receipts` GROUP BY `userID` limit 0,1;");
-		$userID = $database[0]['userID'];
-		return getUserInfo($conn, $userID)['name'];
 	}
 
 	// Description : Returns information of a user based on his/her ID number.
