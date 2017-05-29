@@ -1,8 +1,6 @@
 <?php
 	// function list:
-	// findUnprintedReceipts($conn);
 	// getReceiptInfo($conn, $receiptID);
-	// getUserInfo($conn, $id);
 	// queryDatabase($conn, $sql);
 
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
@@ -59,29 +57,12 @@
 		}
 	}
 
-	function listDaysFromReceipts($connection){
-		$database = queryDatabase("select count(date(`date`)) as `total`, date(`date`) from `receipts` GROUP BY date(`date`);");
-	}
-
 	function getReceiptInfo( $connection, $receiptID ){
 		$database = queryDatabase( $connection, "select `userID`,`price`,`paid`,`itemArray`,`priceArray`,`timestamp`,`date`,`Last4digitsCard` from `receipts` where `id` = $receiptID;" );
 		if (!count( $database ) ){
 			die("ERROR : Attempted to query info for receipt #$receiptID but nothing was returned");
 		}
 		return $database[0];
-	}
-
-	// Description : Finds unprinted receipts in database, returns in an array
-	// Parameters :
-	//	$connection - MySQLi connection object.
-	function findUnprintedReceipts( $connection ){
-		$database = queryDatabase( $connection, 'select `id` from `receipts` where `isPrinted` = 0;');
-		$return = array();
-		foreach ($database as $key => $value){
-			$return[] = $value['id'] ;
-		}
-		unset ($database, $key, $value);
-		return $return;
 	}
 
 	// Description : Returns information of a merchandise item based on his/her artist's ID number and its own ID number
@@ -108,19 +89,6 @@
 	function getReceiptsSummary($conn){
 		$database = queryDatabase( $conn, "Select `price`,`itemArray`,`priceArray`,`isGalleryStoreSale`,`Last4digitsCard`,`date` from `receipts`;" );
 		return $database;
-	}
-
-	// Description : Returns information of a user based on his/her ID number.
-	// Parameters :
-	//	$connection 	- MySQLi connection object.
-	//	$id		- ID number of user
-	function getUserInfo( $connection, $id ){
-		$return = queryDatabase( $connection, "select `userID`,`name` from `users` where `id` = $id;");
-		if ( !count( $return ) ) {
-			die("ERROR : Failed to query user info from user ID $id in function 'getUserInfo' of inc/mysql.php");
-		}
-		unset($query);
-		return $return[0];
 	}
 
 	function setReceiptAsPrinted($connection, $receipt){

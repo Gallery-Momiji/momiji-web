@@ -1,33 +1,4 @@
 <?php
-	function generateReceiptInfo( $connection,  $receiptID ){
-		$info = getReceiptInfo($connection, $receiptID);
-
-		$sales = array();
-
-		$items = trim($info['itemArray'], '#');
-		$items = explode( '#', $items );
-
-		$prices = trim($info['priceArray'], '#');
-		$prices = explode( '#', $prices);
-
-		foreach ($items as $key => $item ){
-			if (strlen($item)==0){
-				echo "WARNING : Found an empty entry in receipt #$receiptID, ignoring...\n";
-				continue;
-			}
-			$identifier = evalUID($item);
-			if (isGS($item)){
-				$temp = getGSMerchInfo($connection, $identifier['artist'], $identifier['piece']);
-				$sales[] = forceStringLength($item . LF. substr($temp['PieceTitle'], 0, 16), 26). " $" . number_format($prices[$key],2) ;
-			} else {
-				$temp = getMerchInfo($connection, $identifier['artist'], $identifier['piece']);
-				$sales[] = forceStringLength($item . LF. substr($temp['MerchTitle'], 0, 16), 26). " $" . number_format($prices[$key],2) ;
-			}
-		}
-
-		return $sales;
-	}
-
 	function evalUID( $UID ){
 		return array( 'artist' => substr($UID, 2,3), 'piece' => substr($UID,6,3) );
 	}
