@@ -7,6 +7,7 @@
 		$cashsales = 0;
 		$creditcardsales = 0;
 		$commission = 0;
+		$fees = 0;
 		$line = 0;
 		$pncount = 0;
 		$ancount = 0;
@@ -66,6 +67,14 @@
 			}
 			echo "</tr></table>Total sales for this day: $<b>" . $total . "</b>";
 		}
+
+		$artistfees = findFees($connection);
+		foreach ($artistfees as $artistfee){
+			$fees += $artistfee['ArtistPaid'];
+			if($artistfee['ArtistcheckOut'] != '0'){
+				$fees += $artistfee['ArtistDue'];
+			}
+		}
 ?>
 
 <h1>Statistics</h1>
@@ -78,4 +87,5 @@
 	echo "<b>Total gross credit card sales</b>: $" .  number_format($creditcardsales,2). "<br>";
 	echo "<b>Total gross combined sales</b>: $" .  number_format($total_money,2). "<br>";
 	echo "<b>Total commission made</b>: $" .  number_format($commission,2);
+	echo "<b>Total charged via fees</b>: $" .  number_format($artistfees,2);
 ?>

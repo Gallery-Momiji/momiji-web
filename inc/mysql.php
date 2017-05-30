@@ -120,3 +120,8 @@
 		$database = queryDatabase( $connection, "select `PieceTitle`,`PieceID`,`PieceStock` from `gsmerchandise` where `ArtistID` = $ArtistID AND `PieceStock` > 0;" );
 		return $database;
 	}
+
+	function findFees($connection){
+		$database = queryDatabase( $connection, "select `ArtistPaid`,`ArtistDue`,`ArtistcheckOut` from `artists`;" );
+		return $database;
+	}
