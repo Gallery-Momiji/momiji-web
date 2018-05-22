@@ -114,18 +114,18 @@
  </div>
  <div class="agreement">
   <h2>Agreement:</h2>
-  By signing below, you, the artist, agrees to the following terms:
+  By signing below, you, the artist, agree to the following terms:
   <ul>
    <li>All of the above information is correct and requires no additional changes.
    <li>Your art has been hung correctly on your panel and/or placed correctly on your table.</li>
    <li>Gallery Momiji will not take responsibility for any art that becomes damaged due to incorrect hanging or table placement.</li>
    <li>All bid sheets are visible and are not hanging off the side or bottom of a panel or table.</li>
    <li>All prints for the Gallery Store have been counted correctly (if applicable).</li>
-   <li>A 10% commission will be charged on all sales, both in the Gallery and the Gallery Store.</li>
-   <li>All profits will be given in the form of a cheque upon successful checkout on Sunday.</li>
+   <li>Gallery commission has been previous agreed upon and will be charged on all sales.</li>
+   <li>All profits will be given upon successful checkout on Sunday.</li>
 <?php
 	if ($owed > 0){
-		echo"   <li>You have a unpaid balance of <b><i>$" . number_format($owed,2) . "</b></i>, which will be deducted from your sales at check-out on Sunday.</li>";
+		echo"   <li>You currently have a unpaid balance of <b><i>$" . number_format($owed,2) . "</b></i>, which will be deducted from your sales at check-out on Sunday if not resolved prior.</li>";
 		echo"   <li>In the event of unpaid fees, Gallery Momiji reserves the right to withhold your artwork until fees are paid.</li>";
 	}
 ?>
