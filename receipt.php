@@ -214,7 +214,7 @@
 			$temp = getMerchInfo($connection, $identifier['artist'], $identifier['piece']);
 			echo '   <td>' . $temp['MerchTitle'] . "</td>\n";
 		} else {
-			echo '   <td>' . $temp['Misc. Payment'] . "</td>\n";
+			echo '   <td>Misc. Payment</td>\n';
 		}
 		echo '   <td>$' . number_format($prices[$key],2) . "</td></tr>\n";
 	}
