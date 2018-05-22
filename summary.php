@@ -7,6 +7,7 @@
 		$cashsales = 0;
 		$creditcardsales = 0;
 		$commission = 0;
+		$cashbalance = 0;
 		$fees = 0;
 		$line = 0;
 		$pncount = 0;
@@ -21,9 +22,18 @@
 				$cashsales += $receipt['price'];
 			}
 			if($receipt['isGalleryStoreSale'] != '0'){
-					$commission += ($receipt['price'] / 100.0) * COMMISSION_GS;
-			} else {
-					$commission += ($receipt['price'] / 100.0) * COMMISSION_AS;
+				$commission += ($receipt['price'] / 100.0) * COMMISSION_GS;
+				if($receipt['Last4digitsCard'] == '0'){
+					$cashbalance += ($receipt['price'] / 100.0) * COMMISSION_GS;
+				}
+			} elseif(($receipt['isAuctionSale'] != '0')
+				|| ($receipt['isQuickSale'] != '0')){
+				$commission += ($receipt['price'] / 100.0) * COMMISSION_AS;
+				if($receipt['Last4digitsCard'] == '0'){
+					$cashbalance += ($receipt['price'] / 100.0) * COMMISSION_AS;
+				}
+			} elseif($receipt['Last4digitsCard'] == '0'){
+				$cashbalance += $receipt['price'];
 			}
 			$items = explode("#", trim($receipt['itemArray'], '#'));
 			$prices = explode("#", trim($receipt['priceArray'], '#'));
@@ -32,7 +42,7 @@
 				if (isGS($item)){
 					$pncount++;
 					$pns[$date][] = array($item =>$prices[$key]);
-				} else {
+				} elseif (isAN($item)){
 					$ancount++;
 					$ans[$date][] = array($item =>$prices[$key]);
 				}
@@ -88,4 +98,5 @@
 	echo "<b>Total gross combined sales</b>: $" .  number_format($total_money,2). "<br>";
 	echo "<b>Total commission made</b>: $" .  number_format($commission,2). "<br>";
 	echo "<b>Total charged via fees</b>: $" .  number_format($fees,2);
+	echo "<b>Total cash to deposit</b>: $" .  number_format($cashbalance,2);
 ?>

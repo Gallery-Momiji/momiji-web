@@ -42,7 +42,7 @@
 	$total = 0;
 	$td = 0;
 	foreach ($sales as $key => $sale){
-		if (!isGS($key)){
+		if (isAN($key)){
 			echo "<td>" . $key . " - <b>$" . number_format($sale,2) . "</b></td>";
 			$td++;
 			$total +=$sale;

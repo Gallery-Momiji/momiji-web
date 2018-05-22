@@ -8,6 +8,10 @@
 		return (bool)(strpos(strtolower($UID), 'pn') === 0);
 	}
 
+	function isAN( $UID ){
+		return (bool)(strpos(strtolower($UID), 'an') === 0);
+	}
+
 	function forceStringLength( $str, $len, $char=' ', $fill_before = false ){
 		if ( strlen($str) > $len) {
 			return substr($str,0,$len);

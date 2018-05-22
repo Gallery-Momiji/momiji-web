@@ -87,7 +87,7 @@
 	}
 
 	function getReceiptsSummary($conn){
-		$database = queryDatabase( $conn, "Select `price`,`itemArray`,`priceArray`,`isGalleryStoreSale`,`Last4digitsCard`,`date` from `receipts`;" );
+		$database = queryDatabase( $conn, "Select `price`,`itemArray`,`priceArray`,`isGalleryStoreSale`,`isAuctionSale`,`isQuickSale`,`Last4digitsCard`,`date` from `receipts`;" );
 		return $database;
 	}
 
