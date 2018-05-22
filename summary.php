@@ -16,21 +16,22 @@
 		$ans = array();
 		$receipts = getReceiptsSummary($connection);
 		foreach ($receipts as $receipt){
-			if($receipt['Last4digitsCard'] != '0'){
-				$creditcardsales += $receipt['price'];
-			} else {
-				$cashsales += $receipt['price'];
-			}
 			if($receipt['isGalleryStoreSale'] != '0'){
 				$commission += ($receipt['price'] / 100.0) * COMMISSION_GS;
 				if($receipt['Last4digitsCard'] == '0'){
 					$cashbalance += ($receipt['price'] / 100.0) * COMMISSION_GS;
+					$cashsales += $receipt['price'];
+				} else{
+					$creditcardsales += $receipt['price'];
 				}
 			} elseif(($receipt['isAuctionSale'] != '0')
 				|| ($receipt['isQuickSale'] != '0')){
 				$commission += ($receipt['price'] / 100.0) * COMMISSION_AS;
 				if($receipt['Last4digitsCard'] == '0'){
 					$cashbalance += ($receipt['price'] / 100.0) * COMMISSION_AS;
+					$cashsales += $receipt['price'];
+				} else{
+					$creditcardsales += $receipt['price'];
 				}
 			} elseif($receipt['Last4digitsCard'] == '0'){
 				$cashbalance += $receipt['price'];
