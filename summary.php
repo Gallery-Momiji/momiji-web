@@ -13,8 +13,10 @@
 		$line = 0;
 		$pncount = 0;
 		$ancount = 0;
+		$adcount = 0;
 		$pns = array();
 		$ans = array();
+		$ads = array();
 		$receipts = getReceiptsSummary($connection);
 		foreach ($receipts as $receipt){
 			if($receipt['isGalleryStoreSale'] != '0'){
@@ -48,6 +50,9 @@
 				} elseif (isAN($item)){
 					$ancount++;
 					$ans[$date][] = array($item =>$prices[$key]);
+				} elseif (isAN($item)){
+					$adcount++;
+					$ads[$date][] = array($item =>$prices[$key]);
 				}
 			}
 		}
@@ -79,6 +84,21 @@
 				if ($td % 6 == 0){ echo "</tr><tr>";}
 			}
 			echo "</tr></table>Total sales for this day: $<b>" . $total . "</b>";
+		}
+
+		echo "<hr>";
+
+		foreach ($ads as $day => $sales){
+			$td = 0;
+			$total = 0;
+			echo "<h1>Cash adjustments on " . $day . "</h1><table border=1><tr>";
+			foreach ($sales as $key => $sale){
+				echo "<td>" . key($sale) . " - <b>$" . number_format($sale[key($sale)],2) . "</b></td>";
+				$td++;
+				$total +=$sale[key($sale)];
+				if ($td % 6 == 0){ echo "</tr><tr>";}
+			}
+			echo "</tr></table>Total adjustments for this day: $<b>" . $total . "</b>";
 		}
 
 		$artistfees = findFees($connection);
