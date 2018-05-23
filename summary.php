@@ -19,7 +19,7 @@
 			if($receipt['isGalleryStoreSale'] != '0'){
 				$commission += ($receipt['price'] / 100.0) * COMMISSION_GS;
 				if($receipt['Last4digitsCard'] == '0'){
-					$cashbalance += ($receipt['price'] / 100.0) * COMMISSION_GS;
+					$cashbalance += $receipt['price'];
 					$cashsales += $receipt['price'];
 				} else{
 					$creditcardsales += $receipt['price'];
@@ -28,7 +28,7 @@
 				|| ($receipt['isQuickSale'] != '0')){
 				$commission += ($receipt['price'] / 100.0) * COMMISSION_AS;
 				if($receipt['Last4digitsCard'] == '0'){
-					$cashbalance += ($receipt['price'] / 100.0) * COMMISSION_AS;
+					$cashbalance += $receipt['price'];
 					$cashsales += $receipt['price'];
 				} else{
 					$creditcardsales += $receipt['price'];
