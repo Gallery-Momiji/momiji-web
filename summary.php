@@ -33,10 +33,10 @@
 					$cashsales += $receipt['price'];
 				} else{
 					$creditcardsales += $receipt['price'];
-					$cashadjust += $receipt['price'];
 				}
 			} elseif($receipt['Last4digitsCard'] == '0'){
 				$cashbalance += $receipt['price'];
+				$cashadjust += $receipt['price'];
 			}
 			$items = explode("#", trim($receipt['itemArray'], '#'));
 			$prices = explode("#", trim($receipt['priceArray'], '#'));
