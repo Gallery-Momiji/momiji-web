@@ -101,6 +101,6 @@
 	echo "<b>Total gross combined sales</b>: $" .  number_format($total_money,2). "<br>";
 	echo "<b>Total commission made</b>: $" .  number_format($commission,2). "<br>";
 	echo "<b>Total charged via fees</b>: $" .  number_format($fees,2). "<br>";
-	echo "<b>Total cash adjustments (misc payouts/payments)</b>: $" .  number_format($cashadjust,2). "<br>";
+	echo "<b>Total cash adjustments</b>: $" .  number_format($cashadjust,2). "<br>";
 	echo "<b>Total cash</b>: $" .  number_format($cashbalance,2);
 ?>
