@@ -7,6 +7,7 @@
 		$cashsales = 0;
 		$creditcardsales = 0;
 		$commission = 0;
+		$cashadjust = 0;
 		$cashbalance = 0;
 		$fees = 0;
 		$line = 0;
@@ -32,6 +33,7 @@
 					$cashsales += $receipt['price'];
 				} else{
 					$creditcardsales += $receipt['price'];
+					$cashadjust += $receipt['price'];
 				}
 			} elseif($receipt['Last4digitsCard'] == '0'){
 				$cashbalance += $receipt['price'];
@@ -99,5 +101,6 @@
 	echo "<b>Total gross combined sales</b>: $" .  number_format($total_money,2). "<br>";
 	echo "<b>Total commission made</b>: $" .  number_format($commission,2). "<br>";
 	echo "<b>Total charged via fees</b>: $" .  number_format($fees,2). "<br>";
+	echo "<b>Total cash adjustments (misc payouts/payments)</b>: $" .  number_format($cashadjust,2). "<br>";
 	echo "<b>Total cash</b>: $" .  number_format($cashbalance,2);
 ?>
