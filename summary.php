@@ -13,7 +13,6 @@
 		$line = 0;
 		$pncount = 0;
 		$ancount = 0;
-		$adcount = 0;
 		$pns = array();
 		$ans = array();
 		$ads = array();
@@ -50,8 +49,7 @@
 				} elseif (isAN($item)){
 					$ancount++;
 					$ans[$date][] = array($item =>$prices[$key]);
-				} elseif (isAN($item)){
-					$adcount++;
+				} else{
 					$ads[$date][] = array($item =>$prices[$key]);
 				}
 			}
@@ -98,7 +96,7 @@
 				$total +=$sale[key($sale)];
 				if ($td % 6 == 0){ echo "</tr><tr>";}
 			}
-			echo "</tr></table>Total adjustments for this day: $<b>" . $total . "</b>";
+			echo "</tr></table>Total adjustmentsq for this day: $<b>" . $total . "</b>";
 		}
 
 		$artistfees = findFees($connection);
