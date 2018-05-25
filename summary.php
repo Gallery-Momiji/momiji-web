@@ -16,10 +16,10 @@
 		$pns = array();
 		$ans = array();
 		$ads = array();
+
 		$receipts = getReceiptsSummary($connection);
 		foreach ($receipts as $receipt){
 			if($receipt['isGalleryStoreSale'] != '0'){
-				$commission += ($receipt['price'] / 100.0) * COMMISSION_GS;
 				if($receipt['Last4digitsCard'] == '0'){
 					$cashbalance += $receipt['price'];
 					$cashsales += $receipt['price'];
@@ -28,7 +28,6 @@
 				}
 			} elseif(($receipt['isAuctionSale'] != '0')
 				|| ($receipt['isQuickSale'] != '0')){
-				$commission += ($receipt['price'] / 100.0) * COMMISSION_AS;
 				if($receipt['Last4digitsCard'] == '0'){
 					$cashbalance += $receipt['price'];
 					$cashsales += $receipt['price'];
@@ -46,9 +45,11 @@
 				if (isGS($item)){
 					$pncount++;
 					$pns[$date][] = array($item =>$prices[$key]);
+					$commission += ($prices[$key] / 100.0) * getArtistGSCommission($connection,$item);
 				} elseif (isAN($item)){
 					$ancount++;
 					$ans[$date][] = array($item =>$prices[$key]);
+					$commission += ($prices[$key] / 100.0) * getArtistASCommission($connection,$item);
 				} else{
 					$ads[$date][] = array($item =>$prices[$key]);
 				}

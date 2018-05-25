@@ -31,6 +31,8 @@
 	}
 
 	$artistinfo = getArtistInfo($connection, $artistid);
+	$ascommission = (float)$artistinfo['ArtistASCommission'];
+	$gscommission = (float)$artistinfo['ArtistGSCommission'];
 
 	echo "<h1>Artist #" . $artistid . " Sales Summary</h1>";
 	$final_balance = 0.0;
@@ -50,11 +52,11 @@
 		}
 	}
 
-	$total_after_commission = $total * (1-((INT)COMMISSION_AS / 100));
+	$total_after_commission = $total * (1-($ascommission / 100));
 	$final_balance += $total_after_commission;
 	echo "</tr></table>";
 	echo "Total Sold : <b>$" . number_format($total,2) . "</b><br>"; 
-	echo "Gallery Commission (<b>".COMMISSION_AS."%</b>): <b>$" . number_format($total - $total_after_commission,2) . "</b><br><hr>";
+	echo "Gallery Commission (<b>".$ascommission."%</b>): <b>$" . number_format($total - $total_after_commission,2) . "</b><br><hr>";
 	echo "Final Balance : <b>$" . number_format($total_after_commission,2) . "</b><br>";
 ?>
 
@@ -73,11 +75,11 @@
 		}
 	}
 
-	$total_after_commission = $total * (1-((INT)COMMISSION_GS / 100));
+	$total_after_commission = $total * (1-($gscommission / 100));
 	$final_balance += $total_after_commission;
 	echo "</tr></table>";
 	echo "Total Sold : <b>$" . number_format($total,2) . "</b><br>";
-	echo "Gallery Commission (<b>".COMMISSION_GS."%</b>): <b>$" . number_format($total - $total_after_commission,2) . "</b><br><hr>";
+	echo "Gallery Commission (<b>".$gscommission."%</b>): <b>$" . number_format($total - $total_after_commission,2) . "</b><br><hr>";
 	echo "Final Balance : <b>$" . number_format($total_after_commission,2) . "</b><br>";
 ?>
 
