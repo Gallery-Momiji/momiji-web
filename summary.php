@@ -89,14 +89,14 @@
 		foreach ($ads as $day => $sales){
 			$td = 0;
 			$total = 0;
-			echo "<h1>Cash adjustments on " . $day . "</h1><table border=1><tr>";
+			echo "<h1>Cash Adjustments on " . $day . "</h1><table border=1><tr>";
 			foreach ($sales as $key => $sale){
 				echo "<td>" . key($sale) . " - <b>$" . number_format($sale[key($sale)],2) . "</b></td>";
 				$td++;
 				$total +=$sale[key($sale)];
 				if ($td % 6 == 0){ echo "</tr><tr>";}
 			}
-			echo "</tr></table>Total adjustmentsq for this day: $<b>" . $total . "</b>";
+			echo "</tr></table>Total adjustments for this day: $<b>" . $total . "</b>";
 		}
 
 		$artistfees = findFees($connection);
