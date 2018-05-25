@@ -58,22 +58,22 @@
 	}
 
 	function getArtistASCommission($connection, $item){
-		$temp_artist_id = (float)substr($item,2,3);
+		$temp_artist_id = (INT)substr($item,2,3);
 		$database = queryDatabase($connection,"select `ArtistASCommission` from `artists` where `ArtistID`= ". $connection->real_escape_string($temp_artist_id)  .";");
 		if (!count($database)){
 			die("ERROR : Attempted to query artist with ID $temp_artist_id but nothing was returned");
 		} else {
-			return $database['ArtistASCommission'];
+			return $database[0]['ArtistASCommission'];
 		}
 	}
 
 	function getArtistGSCommission($connection, $item){
-		$temp_artist_id = (float)substr($item,2,3);
+		$temp_artist_id = (INT)substr($item,2,3);
 		$database = queryDatabase($connection,"select `ArtistGSCommission` from `artists` where `ArtistID`= ". $connection->real_escape_string($temp_artist_id)  .";");
 		if (!count($database)){
 			die("ERROR : Attempted to query artist with ID $temp_artist_id but nothing was returned");
 		} else {
-			return $database['ArtistGSCommission'];
+			return $database[0]['ArtistGSCommission'];
 		}
 	}
 
