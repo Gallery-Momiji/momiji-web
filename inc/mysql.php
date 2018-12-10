@@ -160,3 +160,17 @@
 		$database = queryDatabase( $conn, "SELECT `bidderno`,`value` FROM `bids` WHERE `ArtistID` = $artistid AND `MerchID` = $merchid;" );
 		return $database;
 	}
+
+	function checkPreBidInfo($connection, $artistid, $merchid, $bidvalue){
+		$database = queryDatabase( $connection, "SELECT `MerchSold`,MAX(`value`) AS `currentbid`,COUNT(`value`) AS `bidcount`,`AuctionEnd`,`AuctionCutoff` FROM `merchandise` LEFT JOIN `bids` USING (`ArtistID`,`MerchID`) CROSS JOIN `options` WHERE `ArtistID` = $artistid AND `MerchID` = $merchid AND `MerchMinBid` BETWEEN 1 AND $bidvalue GROUP BY `ArtistID`,`MerchID`;" );
+		return $database;
+	}
+
+	function checkBidder($connection, $biddernumber){
+		$database = queryDatabase( $connection, "SELECT `bidderno` FROM `bidders` WHERE `bidderno` == $biddernumber;" );
+		return count($database);
+	}
+
+	function submitBid($connection, $artistid, $merchid, $bidvalue, $name, $biddernumber){
+		return queryDatabase( $connection, "INSERT INTO `bidders` (`name`, `value`, `bidderno`, `ArtistID`, `MerchID`) VALUES ( $name, $bidvalue, $biddernumber, $artistid, $merchid );" );
+	}
