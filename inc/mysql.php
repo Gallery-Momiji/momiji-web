@@ -145,3 +145,18 @@
 		$database = queryDatabase( $connection, "select `ArtistPaid`,`ArtistDue`,`ArtistcheckOut` from `artists`;" );
 		return $database;
 	}
+
+	function getItemsForBidding($conn){
+		$database = queryDatabase( $conn, "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`AuctionEnd` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0;" );
+		return $database;
+	}
+
+	function getInfoForBidding($conn, $artistid, $merchid){
+		$database = queryDatabase( $conn, "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchMedium`,`MerchSold`,`AuctionEnd`,`AuctionCutoff` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 AND `ArtistID` = $artistid AND `MerchID` = $merchid;" );
+		return $database;
+	}
+
+	function getBidsForMerch($conn, $artistid, $merchid){
+		$database = queryDatabase( $conn, "SELECT `bidderno`,`value` FROM `bids` WHERE `ArtistID` = $artistid AND `MerchID` = $merchid;" );
+		return $database;
+	}
