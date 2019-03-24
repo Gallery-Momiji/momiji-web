@@ -8,8 +8,8 @@
 	}
 
 	$itemsForBidding = getItemsForBidding($connection);
-	if (itemsForBidding[0]['AuctionEnd'] == "1"){
-		//TODO use better error ouput than "die"
+	if ($itemsForBidding[0]['AuctionEnd'] == "1"){
+		//TODO use better output than plain text
 		echo "Sorry! The auction is now closed!";
 	}
 ?>

@@ -29,19 +29,19 @@
 	if (!count( $infoForBidding )){
 		header('Location: index.php?error=1');
 	}
-	$infoForBidding = infoForBidding[0]
+	$infoForBidding = $infoForBidding[0];
 
-	if (infoForBidding['AuctionEnd'] == "1"){
+	if ($infoForBidding['AuctionEnd'] == "1"){
 		//TODO use better output than plain text
 		echo "Sorry! The auction is now closed!";
 	}
 
-	if (infoForBidding['MerchSold'] == "1"){
+	if ($infoForBidding['MerchSold'] == "1"){
 		//TODO use better output than plain text
 		echo "This piece has already been sold!";
 	} else {
 		$itemBids = getBidsForMerch($connection, $artistid, $merchid);
-		if (count( $itemBids ) >= infoForBidding['AuctionCutoff']){
+		if (count( $itemBids ) >= $infoForBidding['AuctionCutoff']){
 			//TODO use better output than plain text
 			echo "This piece is going to live auction! Ask the staff for when the, live auction will happen.";
 		}
