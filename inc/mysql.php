@@ -172,5 +172,5 @@
 	}
 
 	function submitBid($connection, $artistid, $merchid, $bidvalue, $name, $biddernumber){
-		return queryDatabase( $connection, "INSERT INTO `bidders` (`name`, `value`, `bidderno`, `ArtistID`, `MerchID`) VALUES ( $name, $bidvalue, $biddernumber, $artistid, $merchid );" );
+		return queryDatabase( $connection, "INSERT INTO `bids` (`name`, `value`, `bidderno`, `ArtistID`, `MerchID`) VALUES ( \"".removeQuotes($name)."\", $bidvalue, $biddernumber, $artistid, $merchid );" );
 	}
