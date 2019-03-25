@@ -68,10 +68,11 @@
 	foreach ($itemsForBidding as $key => $item){
 		$itemid='AN'.forceStringLength($item['ArtistID'],3,0,true).'-'.forceStringLength($item['MerchID'],3,0,true);
 		echo '<form class="form-horizontal" action="item.php?artistid='.$item['ArtistID'].'&merchid='.$item['MerchID'].'" method="post" id="item'.$itemid.'">
-<div class="form-group"><div class="col-md-4">
-<button id="select" name="select" class="btn btn-primary">Select</button>
-<label class="col-md-4 control-label">'.$itemid.'</label>
-<label class="col-md-4 control-label">'.$item['MerchTitle'].'</label></div></div></form>';
+<div class="form-group">
+<div class="col-sm-1"><button class="btn btn-primary">Select</button></div>
+<div class="col-sm-2 control-label"><label">'.$itemid.'</label></div>
+<div class="col-sm-2 control-label"><label">'.$item['MerchTitle'].'</label></div>
+</div></form>';
 	}
 ?>
 	  </div>
