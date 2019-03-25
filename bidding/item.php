@@ -116,7 +116,7 @@ echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,tr
 	if ($MerchMinBid < $MerchQuickSale){
 		echo '<div class="form-group">
 <div class="col-sm-2 control-label"><label><strong>Minimum Bid ($):</strong></label></div>
-<div class="col-sm-2 control-label"><label>'.$MerchMinBid.'</label></div>
+<div class="col-sm-2 control-label">'.$MerchMinBid.'</div>
 </div>';
 	}
 ?>
@@ -127,6 +127,8 @@ echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,tr
         </div>
       </form>
     </div>
+
+<!-- TODO add current bids -->
 
   <form class="form-horizontal" action="submit.php?artistid=<?php
 echo $artistid.'&merchid='.$merchid;
