@@ -1,6 +1,7 @@
 <?php
 	require_once('../config.php');
 	require_once('../inc/mysql.php');
+	require_once('../inc/util.php');
 
 	$itemsForBidding = getItemsForBidding($connection);
 ?>
@@ -49,7 +50,7 @@
     <!-- Main jumbotron -->
     <div class="jumbotron">
       <div class="container">
-        <p id="bannermessage">Items for Bidding</p>
+        <p id="bannermessage">Select an item below to start bidding</p>
       </div>
     </div>
 
@@ -62,6 +63,17 @@
 	  <div class="alert alert-warning" style="display:none" role="alert" id="fail_over">
         <strong>Sorry!</strong> The auction is now closed!
       </div>
+<?php
+	#TODO implement "search" function to filter generated content below
+	foreach ($itemsForBidding as $key => $item){
+		$itemid='AN'.forceStringLength($item['ArtistID'],3,0,true).'-'.forceStringLength($item['MerchID'],3,0,true);
+		echo '<form class="form-horizontal" action="item.php?artistid='.$item['ArtistID'].'&merchid='.$item['MerchID'].'" method="post" id="item'.$itemid.'">
+<div class="form-group"><div class="col-md-4">
+<button id="select" name="select" class="btn btn-primary">Select</button>
+<label class="col-md-4 control-label">'.$itemid.'</label>
+<label class="col-md-4 control-label">'.$item['MerchTitle'].'</label></div></div></form>';
+	}
+?>
 	  </div>
 
       <hr>
