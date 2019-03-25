@@ -60,7 +60,7 @@
 	  <div class="alert alert-danger" style="display:none" role="alert" id="fail_error">
         <strong>Error:</strong> Unable to show selected item, please try again.
       </div>
-	  <div class="alert alert-warning" style="display:none" role="alert" id="fail_over">
+	  <div class="alert alert-warning" style="display:none" role="alert" id="warn_over">
         <strong>Sorry!</strong> The auction is now closed!
       </div>
 <?php
@@ -92,8 +92,7 @@
         <script src="js/index.js"></script>
 <?php
 	if ($itemsForBidding[0]['AuctionEnd'] == "1"){
-		//TODO use better output than plain text
-		echo "<script>$('#fail_over').show();</script>";
+		echo "<script>$('#warn_over').show();</script>";
 	}
 ?>
     </body>
