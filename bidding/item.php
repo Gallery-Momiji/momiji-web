@@ -89,6 +89,9 @@ echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,tr
 	  <div class="alert alert-danger" style="display:none" role="alert" id="fail_error3">
         <strong>Oops,</strong> looks like you might have been out bid!
       </div>
+	  <div class="alert alert-danger" style="display:none" role="alert" id="fail_error4">
+        <strong>Sorry,</strong> looks like you already have the highest bid!
+      </div>
 	  <div class="alert alert-warning" style="display:none" role="alert" id="warn_over">
         <strong>Sorry!</strong> The auction is now closed!
       </div>

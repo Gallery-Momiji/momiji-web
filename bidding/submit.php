@@ -42,7 +42,12 @@
 		return;
 	}
 
-	#TODO we should guard against a bidder bidding twice in a row
+	$checkLastBidder = checkLastBid($connection, $artistid, $merchid);
+	if (count( $checkLastBidder ) and $checkLastBidder[0]['bidderno'] == "$biddernumber"){
+		header('Location: item.php?error=4&artistid='.$artistid.'&merchid='.$merchid);
+		return;
+	}
+
 	if (submitBid($connection, $artistid, $merchid, $bidvalue, $biddername, $biddernumber)){
 		header('Location: item.php?success=1&artistid='.$artistid.'&merchid='.$merchid);
 	} else {

@@ -171,6 +171,11 @@
 		return count($database);
 	}
 
+	function checkLastBid($connection, $artistid, $merchid){
+		$database = queryDatabase( $connection, "SELECT `bidderno` FROM `bids` WHERE `ArtistID` = $artistid AND `MerchID` = $merchid ORDER BY `value` DESC LIMIT 1;" );
+		return $database;
+	}
+
 	function submitBid($connection, $artistid, $merchid, $bidvalue, $name, $biddernumber){
 		return queryDatabase( $connection, "INSERT INTO `bids` (`name`, `value`, `bidderno`, `ArtistID`, `MerchID`) VALUES ( \"".removeQuotes($name)."\", $bidvalue, $biddernumber, $artistid, $merchid );" );
 	}

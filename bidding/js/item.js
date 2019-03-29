@@ -8,6 +8,9 @@ switch($.urlParam('error')) {
   case "3":
     $('#fail_error3').show();
     break;
+  case "4":
+    $('#fail_error4').show();
+    break;
   default:
     if ($.urlParam('success') !== false){
       $('#success_bid').show();
