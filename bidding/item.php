@@ -149,7 +149,7 @@ echo $artistid.'&merchid='.$merchid;
 	if (count( $itemBids ) > 0){
 		echo '<div class="form-group">
 	<div class="col-sm-2 control-label"><label>#</label></div>
-	<div class="col-sm-2 control-label"><label>Bidder Name</label></div>
+	<div class="col-sm-2 control-label"><label>Bidder</label></div>
 	<div class="col-sm-2 control-label"><label>Bid Amount</label></div>
 	</div>';
 		$i=1;
@@ -203,6 +203,7 @@ echo $nextbid.' placeholder="'.$nextbid;
     </div>
 
     <!-- Submit Button -->
+    <!-- TODO add a confirmation, e.g. "Are you sure?" -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="submit"></label>
       <div class="col-md-4">
