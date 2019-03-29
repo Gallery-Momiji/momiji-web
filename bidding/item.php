@@ -68,7 +68,8 @@
     <!-- Main jumbotron -->
     <div class="jumbotron">
       <div class="container">
-        <p id="bannermessage">AN<?php
+        <p id="bannermessage">
+        <a href="index.php"><button type="button" class="btn btn-primary">Back</button></a>   AN<?php
 echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,true);
 ?></p>
       </div>
@@ -179,7 +180,7 @@ echo $artistid.'&merchid='.$merchid;
     <div class="form-group">
       <label class="col-md-4 control-label" for="bnumber">Bidder Number</label>
       <div class="col-md-2">
-      <input autocomplete="off" id="bnumber" name="bnumber" type="number" class="form-control input-md" required="">
+      <input autocomplete="off" id="bnumber" name="bnumber" type="number" min=1 class="form-control input-md" required="">
       </div>
     </div>
 
