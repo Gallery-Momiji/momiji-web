@@ -167,7 +167,7 @@
 	}
 
 	function checkBidder($connection, $biddernumber){
-		$database = queryDatabase( $connection, "SELECT `bidderno` FROM `bidders` WHERE `bidderno` == $biddernumber;" );
+		$database = queryDatabase( $connection, "SELECT `bidderno` FROM `bidders` WHERE `bidderno` = $biddernumber;" );
 		return count($database);
 	}
 

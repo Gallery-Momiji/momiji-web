@@ -7,6 +7,7 @@
 
 	if (!isset($_GET['artistid']) or $_GET['artistid'] == "" or !isset($_GET['merchid']) or $_GET['merchid'] == ""){
 		header('Location: index.php?error=1');
+		return;
 	}
 	$artistid = $_GET['artistid'];
 	$merchid = $_GET['merchid'];
@@ -17,23 +18,28 @@
 
 	if (!ctype_digit($bidvalue)){
 		header('Location: item.php?error=1&artistid='.$artistid.'&merchid='.$merchid);
+		return;
 	}
 
 	if (!checkBidder($connection, $biddernumber)){
 		header('Location: item.php?error=2&artistid='.$artistid.'&merchid='.$merchid);
+		return;
 	}
 
 	$checkBid = checkPreBidInfo($connection, $artistid, $merchid, $bidvalue);
 	if (!count( $checkBid )){
 		header('Location: item.php?error=1&artistid='.$artistid.'&merchid='.$merchid);
+		return;
 	}
 	$checkBid = $checkBid[0];
 
 	if ($checkBid['AuctionEnd'] == "1" or $checkBid['MerchSold'] == "1" or $checkBid['bidcount'] >= $checkBid['AuctionCutoff']){
 		header('Location: item.php?error=1&artistid='.$artistid.'&merchid='.$merchid);
+		return;
 	}
 	if ($checkBid['currentbid'] >= $bidvalue){
 		header('Location: item.php?error=3&artistid='.$artistid.'&merchid='.$merchid);
+		return;
 	}
 
 	#TODO we should guard against a bidder bidding twice in a row
