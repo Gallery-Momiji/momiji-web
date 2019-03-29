@@ -17,9 +17,11 @@
 	$itemBids = getBidsForMerch($connection, $artistid, $merchid);
 
 	#Commonly used values
-	$MerchMinBid = $infoForBidding['MerchMinBid'];
+	$MerchMinBid = (int)$infoForBidding['MerchMinBid'];
 	$MerchQuickSale = $infoForBidding['MerchQuickSale'];
 	$MerchSold = $infoForBidding['MerchSold'];
+
+	$nextbid=$MerchMinBid;
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -128,16 +130,51 @@ echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,tr
       </form>
     </div>
 
-<!-- TODO add current bids -->
-
   <form class="form-horizontal" action="submit.php?artistid=<?php
 echo $artistid.'&merchid='.$merchid;
 ?>" method="post" id="bidForm" style="display:none">
+
+<?php
+	function get_starred($str) {
+	    $len = strlen($str);
+	    return substr($str, 0, 1).str_repeat('*', $len - 2).substr($str, $len - 1, 1);
+	}
+	echo '<div class="form-group">
+      <label class="col-sm-2 control-label">Current Bids:</label></div>';
+
+	if (count( $itemBids ) > 0){
+		echo '<div class="form-group">
+	<div class="col-sm-2 control-label"><label>#</label></div>
+	<div class="col-sm-2 control-label"><label>Bidder Name</label></div>
+	<div class="col-sm-2 control-label"><label>Bid Amount</label></div>
+	</div>';
+		$i=1;
+		foreach ($itemBids as $key => $item){
+			echo '<div class="form-group">
+	<div class="col-sm-2 control-label">'.$i.'</div>
+	<div class="col-sm-2 control-label">'.get_starred($item['name']).'</div>
+	<div class="col-sm-2 control-label">$'.$item['value'].'</div>
+	</div>';
+			$i++;
+			if($nextbid <= $item['value']) {
+				$nextbid=$item['value']+1;
+			}
+		}
+	} else {
+		echo '<div class="form-group">
+	      <div class="col-sm-2 control-label"></div>
+	      <div class="col-sm-2 control-label">No bids have been placed</div></div>';
+	}
+?>
     <fieldset>
+
+    <div class="form-group">
+      <label class="col-md-4 control-label"><h2>Place a bid below</h2></label>
+    </div>
 
     <!-- Bid Number input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="bnumber">Bidder Number<br></label>
+      <label class="col-md-4 control-label" for="bnumber">Bidder Number</label>
       <div class="col-md-2">
       <input autocomplete="off" id="bnumber" name="bnumber" type="number" class="form-control input-md" required="">
       </div>
@@ -153,10 +190,10 @@ echo $artistid.'&merchid='.$merchid;
 
     <!-- Bid Number input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="bamount">Bid amount ($)<br></label>
+      <label class="col-md-4 control-label" for="bamount">Bid amount ($)</label>
       <div class="col-md-2">
-      <input autocomplete="off" id="bamount" name="bamount" type="number" placeholder="<?php
-echo $MerchMinBid;
+      <input autocomplete="off" id="bamount" name="bamount" type="number" min=<?php
+echo $nextbid.' placeholder="'.$nextbid;
 ?> or more" class="form-control input-md" required="">
       </div>
     </div>

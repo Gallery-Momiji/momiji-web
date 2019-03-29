@@ -157,7 +157,7 @@
 	}
 
 	function getBidsForMerch($conn, $artistid, $merchid){
-		$database = queryDatabase( $conn, "SELECT `bidderno`,`value` FROM `bids` WHERE `ArtistID` = $artistid AND `MerchID` = $merchid ORDER BY `value`;" );
+		$database = queryDatabase( $conn, "SELECT `name`,`value` FROM `bids` WHERE `ArtistID` = $artistid AND `MerchID` = $merchid ORDER BY `value`;" );
 		return $database;
 	}
 
