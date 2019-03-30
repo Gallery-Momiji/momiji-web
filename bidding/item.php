@@ -118,14 +118,6 @@ echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,tr
           <div class="col-sm-2 control-label"><?php echo $infoForBidding['MerchTitle'];?>
           </div>
         </div>
-<?php
-	if ($MerchMinBid < $MerchQuickSale){
-		echo '<div class="form-group">
-<div class="col-sm-2 control-label"><label><strong>Minimum Bid ($):</strong></label></div>
-<div class="col-sm-2 control-label">'.$MerchMinBid.'</div>
-</div>';
-	}
-?>
 	<div class="form-group">
           <div class="col-sm-2 control-label"><label>Medium of the Piece:</label></div>
           <div class="col-sm-2 control-label"><?php echo $infoForBidding['MerchMedium'];?>
@@ -139,6 +131,13 @@ echo $artistid.'&merchid='.$merchid;
 ?>" method="post" id="bidForm" style="display:none">
 
 <?php
+	if ($MerchMinBid < $MerchQuickSale){
+		echo '<div class="form-group">
+<div class="col-sm-2 control-label"><label><strong>Minimum Bid ($):</strong></label></div>
+<div class="col-sm-2 control-label">'.$MerchMinBid.'</div>
+</div>';
+	}
+
 	function get_starred($str) {
 	    $len = strlen($str);
 	    return substr($str, 0, 1).str_repeat('*', $len - 2).substr($str, $len - 1, 1);
