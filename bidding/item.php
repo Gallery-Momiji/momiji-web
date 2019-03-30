@@ -113,6 +113,9 @@ echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,tr
 </div>';
 	}
 ?>
+    <div class="form-group">
+      Reproduction rights are not included.
+    </div>
 	<div class="form-group">
           <div class="col-sm-2 control-label"><label>Name of Piece:</label></div>
           <div class="col-sm-2 control-label"><?php echo $infoForBidding['MerchTitle'];?>
