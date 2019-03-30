@@ -147,7 +147,7 @@
 	}
 
 	function getItemsForBidding($conn){
-		$database = queryDatabase( $conn, "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`AuctionEnd` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 ORDER BY `ArtistID`,`MerchID`;" );
+		$database = queryDatabase( $conn, "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchSold`,`AuctionEnd` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 ORDER BY `ArtistID`,`MerchID`;" );
 		return $database;
 	}
 
