@@ -69,7 +69,7 @@
 		$itemid='AN'.forceStringLength($item['ArtistID'],3,0,true).'-'.forceStringLength($item['MerchID'],3,0,true);
 		echo '<form class="form-horizontal" action="item.php?artistid='.$item['ArtistID'].'&merchid='.$item['MerchID'].'" method="post" id="item'.$itemid.'">
 <div class="form-group">
-<div class="col-sm-1"><button style="width:100px" class="btn btn';
+<div class="col-sm-1"><button style="width:80px" class="btn btn';
 		if ($item['MerchSold'] == "1"){
 			echo '">Sold!';
 		} else {

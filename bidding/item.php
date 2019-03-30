@@ -100,7 +100,7 @@ echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,tr
         <strong>Sorry!</strong> This piece has already been sold!
       </div>
 	  <div class="alert alert-warning" style="display:none" role="alert" id="warn_live">
-        <strong>This piece is going to live auction!</strong> Ask the staff for when the, live auction will happen.
+        <strong>This piece is going to live auction!</strong> Ask the staff for when the live auction will happen.
       </div>
     <div class="container">
       <form class="form-horizontal">
