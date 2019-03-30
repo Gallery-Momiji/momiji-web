@@ -172,6 +172,11 @@ echo $artistid.'&merchid='.$merchid;
     <fieldset>
 
     <div class="form-group">
+      <strong>You can register to bid at the Control Desk.<br>
+Please bid in whole dollars only.<br>
+After <?php echo $infoForBidding['AuctionCutoff'];?> bids, this piece will be sent to live auction on Sunday.</strong>
+    </div>
+    <div class="form-group">
       <label class="col-md-4 control-label"><h2>Place a bid below</h2></label>
     </div>
 
