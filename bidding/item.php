@@ -129,10 +129,7 @@ echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,tr
       </form>
     </div>
 
-  <form class="form-horizontal" action="submit.php?artistid=<?php
-echo $artistid.'&merchid='.$merchid;
-?>" method="post" id="bidForm" style="display:none">
-
+  <form class="form-horizontal" id="bidInfo" style="display:none">
 <?php
 	if ($MerchMinBid < $MerchQuickSale){
 		echo '<div class="form-group">
@@ -172,6 +169,10 @@ echo $artistid.'&merchid='.$merchid;
 	      <div class="col-sm-2 control-label">No bids have been placed</div></div>';
 	}
 ?>
+  </form>
+  <form class="form-horizontal" action="submit.php?artistid=<?php
+echo $artistid.'&merchid='.$merchid;
+?>" method="post" id="bidForm" style="display:none">
     <fieldset>
 
     <div class="form-group">
@@ -244,6 +245,9 @@ echo $nextbid.' placeholder="'.$nextbid;
 		echo "$('#warn_live').show();";
 	} else if ($MerchMinBid < $MerchQuickSale){
 		echo "$('#bidForm').show();";
+	}
+	if ($MerchMinBid < $MerchQuickSale){
+		echo "$('#bidInfo').show();";
 	}
 ?></script>
     </body>
