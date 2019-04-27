@@ -31,21 +31,19 @@
 	}
 
 	function addBidder($conn, $fields){
-		$values = '"'.removeQuotes($fields['name']).'","'.$fields['pnumber'].'","'.$fields['eaddress'].'","'.removeQuotes($fields['maddress']).'"';
-		$query =  'INSERT INTO `bidders` (`name`, `phoneno`, `eaddress`, `maddress`) VALUES ( ' . $values .  '); ';
+		do {
+			$newid=rand(100,999);
+		} while (checkBidder($conn, $newid));
+
+		$values = $newid.',"'.removeQuotes($fields['name']).'","'.$fields['pnumber'].'","'.$fields['eaddress'].'","'.removeQuotes($fields['maddress']).'"';
+		$query =  'INSERT INTO `bidders` (`bidderno`, `name`, `phoneno`, `eaddress`, `maddress`) VALUES ( ' . $values .  '); ';
 		$result = queryDatabase($conn, $query);
 		if ( false === $result){
 			header('Location: index.html?error=2&values='.$values);
 			die();
 		}
 
-		$result = queryDatabase($conn, "SELECT LAST_INSERT_ID() as `id`;");
-		if ( false === $result){
-			header('Location: index.html?error=3');
-			die();
-		}
-
-		return $result[0]['id'];
+		return $newid;
 	}
 
 	function getArtistInfo($connection, $artistID){
