@@ -31,19 +31,21 @@
 	}
 
 	function addBidder($conn, $fields){
-		do {
-			$newid=rand(100,999);
-		} while (checkBidder($conn, $newid));
-
-		$values = $newid.',"'.removeQuotes($fields['name']).'","'.$fields['pnumber'].'","'.$fields['eaddress'].'","'.removeQuotes($fields['maddress']).'"';
-		$query =  'INSERT INTO `bidders` (`bidderno`, `name`, `phoneno`, `eaddress`, `maddress`) VALUES ( ' . $values .  '); ';
+		$values = '"'.removeQuotes($fields['name']).'","'.$fields['pnumber'].'","'.$fields['eaddress'].'","'.removeQuotes($fields['maddress']).'"';
+		$query =  'INSERT INTO `bidders` (`name`, `phoneno`, `eaddress`, `maddress`) VALUES ( ' . $values .  '); ';
 		$result = queryDatabase($conn, $query);
 		if ( false === $result){
 			header('Location: index.html?error=2&values='.$values);
 			die();
 		}
 
-		return $newid;
+		$result = queryDatabase($conn, "SELECT LAST_INSERT_ID() as `id`;");
+		if ( false === $result){
+			header('Location: index.html?error=3');
+			die();
+		}
+
+		return $result[0]['id'];
 	}
 
 	function getArtistInfo($connection, $artistID){
@@ -145,7 +147,21 @@
 	}
 
 	function getItemsForBidding($conn){
-		$database = queryDatabase( $conn, "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchSold`,`AuctionEnd` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 ORDER BY `ArtistID`,`MerchID`;" );
+		
+		if ( isset( $_POST['search_query'] ) ) {
+			$search = $conn->real_escape_string($_POST['search_query']);
+		}
+		$query = "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchSold`,`AuctionEnd` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 ";
+		
+		if ( isset( $search ) ){
+			$query .= " AND `MerchTitle` LIKE '%". $search . "%' ";
+			
+		}
+		
+		$query .= "ORDER BY `ArtistID`,`MerchID`;";
+		
+		
+		$database = queryDatabase( $conn, $query );
 		return $database;
 	}
 

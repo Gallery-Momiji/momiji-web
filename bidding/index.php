@@ -53,7 +53,18 @@
         <p id="bannermessage">Select an item below to start bidding</p>
       </div>
     </div>
-
+	
+	<div class="container">
+		<div class="row">
+				<form method="post" action="index.php" >
+					<div class="input-append">
+						<input class="search-query input-medium" name="search_query" type="text" placeholder="Search..." >
+						<button type = "submit "class="btn btn-large" type="button">🔍</button>
+					</div>
+				</form>
+		
+		</div>
+	</div>
     <div class="container">
       <div class="row">
       <!-- Alert Messages -->
@@ -63,9 +74,13 @@
 	  <div class="alert alert-warning" style="display:none" role="alert" id="warn_over">
         <strong>Sorry!</strong> The auction is now closed!
       </div>
+	  <div class="alert alert-warning" style="display:none" role="alert" id="warn_search">
+        <strong>Sorry!</strong> We couldn't find any article under that name!
+      </div>
 <?php
-	#TODO implement "search" function to filter generated content below
+	#TODO implement "search" function to filter generated content below 
 	foreach ($itemsForBidding as $key => $item){
+
 		$itemid='AN'.forceStringLength($item['ArtistID'],3,0,true).'-'.forceStringLength($item['MerchID'],3,0,true);
 		echo '<form class="form-horizontal" action="item.php?artistid='.$item['ArtistID'].'&merchid='.$item['MerchID'].'" method="post" id="item'.$itemid.'">
 <div class="form-group">
@@ -97,8 +112,14 @@
 		<script src="../inc/js/urlParam.js"></script>
         <script src="js/index.js"></script>
 <?php
-	if ($itemsForBidding[0]['AuctionEnd'] == "1"){
-		echo "<script>$('#warn_over').show();</script>";
+	if ( false === empty( $itemsForBidding ) ){
+		if ( $itemsForBidding[0]['AuctionEnd'] == "1" ){
+			echo "<script>$('#warn_over').show();</script>";
+		}
+	}
+	
+	if ( isset( $_POST['search_query'] ) && empty( $itemsForBidding ) ) {
+		echo "<script>$('#warn_search').show();</script>";
 	}
 ?>
     </body>
