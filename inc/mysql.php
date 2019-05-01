@@ -144,20 +144,31 @@
 	}
 
 	function getItemsForBidding($conn){
-		
 		if ( isset( $_POST['search_query'] ) ) {
 			$search = $conn->real_escape_string($_POST['search_query']);
 		}
 		$query = "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchSold`,`AuctionEnd` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 ";
-		
+
 		if ( isset( $search ) ){
 			$query .= " AND `MerchTitle` LIKE '%". $search . "%' ";
-			
 		}
-		
 		$query .= "ORDER BY `ArtistID`,`MerchID`;";
-		
-		
+
+		$database = queryDatabase( $conn, $query );
+		return $database;
+	}
+
+	function getArtistsForBidding($conn){
+		if ( isset( $_POST['search_query'] ) ) {
+			$search = $conn->real_escape_string($_POST['search_query']);
+		}
+		$query = "SELECT `ArtistID`,`ArtistName` FROM `merchandise` RIGHT JOIN `artists` USING (`ArtistID`) WHERE `MerchMinBid` > 0 ";
+
+		if ( isset( $search ) ){
+			$query .= " AND `MerchTitle` LIKE '%". $search . "%' ";
+		}
+		$query .= "GROUP BY `ArtistID` ORDER BY `ArtistID`";
+
 		$database = queryDatabase( $conn, $query );
 		return $database;
 	}

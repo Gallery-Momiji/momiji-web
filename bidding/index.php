@@ -4,6 +4,7 @@
 	require_once('../inc/util.php');
 
 	$itemsForBidding = getItemsForBidding($connection);
+	$artistsForBidding = getArtistsForBidding($connection);
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -58,8 +59,21 @@
 		<div class="row">
 				<form method="post" action="index.php" >
 					<div class="input-append">
-						<input class="search-query input-medium" name="search_query" type="text" placeholder="Search..." >
+						<div class="col-lg-3">
+							<select name="dropdpown" size="1" id="select-anchor">
+								<option value="" disabled selected>Jump to Artist</option>
+<?php
+foreach ($artistsForBidding as $key => $item){
+	$artistNumber=forceStringLength($item['ArtistID'],3,0,true);
+	echo '<option value="AN'.$artistNumber.'">'.$artistNumber.' - '.$item['ArtistName'].'</option>';
+}
+?>
+							</select>
+						</div>
+						<div class="col-lg-3">
+						<input class="search-query input-medium" name="search_query" type="text" placeholder="Search by Piece Name" >
 						<button type = "submit "class="btn btn-large" type="button">🔍</button>
+						</div>
 					</div>
 				</form>
 		
@@ -78,10 +92,14 @@
         <strong>Sorry!</strong> We couldn't find any article under that name!
       </div>
 <?php
-	#TODO implement "search" function to filter generated content below 
+	$lastartist="";
 	foreach ($itemsForBidding as $key => $item){
-
-		$itemid='AN'.forceStringLength($item['ArtistID'],3,0,true).'-'.forceStringLength($item['MerchID'],3,0,true);
+		$artist='AN'.forceStringLength($item['ArtistID'],3,0,true);
+		if ($artist != $lastartist){
+			echo '<a name="'.$artist.'">';
+			$lastartist=$artist;
+		}
+		$itemid=$artist.'-'.forceStringLength($item['MerchID'],3,0,true);
 		echo '<form class="form-horizontal" action="item.php?artistid='.$item['ArtistID'].'&merchid='.$item['MerchID'].'" method="post" id="item'.$itemid.'">
 <div class="form-group">
 <div class="col-sm-1"><button style="width:80px" class="btn btn';
