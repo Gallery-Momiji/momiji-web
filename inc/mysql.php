@@ -31,9 +31,28 @@
 	}
 
 	function addBidder($conn, $fields){
+		$tries=0;
 		do {
-			$newid=rand(100,999);
-		} while (checkBidder($conn, $newid));
+			if ( $tries > 6250){
+				//Statistically there is a 99.9% chance that after 6250 tries,
+				//the available numbers are exhausted, P=1-(1-1/maxn)^(tries)
+				header('Location: index.html?error=2&values=RANDOMIZER_ERROR');
+				die();
+			}
+			$newid=rand(100,998);
+			switch ($newid) {
+				case 111:
+				case 222:
+				case 333:
+				case 444:
+				case 555:
+				case 666:
+				case 777:
+				case 888:
+					$newid=false;
+			}
+			$tries++;
+		} while ( !$newid || checkBidder($conn, $newid));
 		$values = $newid.',"'.removeQuotes($fields['name']).'","'.$fields['pnumber'].'","'.$fields['eaddress'].'","'.removeQuotes($fields['maddress']).'"';
 		$query =  'INSERT INTO `bidders` (`bidderno`, `name`, `phoneno`, `eaddress`, `maddress`) VALUES ( ' . $values .  '); ';
 		$result = queryDatabase($conn, $query);
