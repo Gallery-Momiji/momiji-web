@@ -4,6 +4,9 @@
 	require_once('../inc/util.php');
 
 	$itemsForBidding = getItemsForBidding($connection);
+	if ( $itemsForBidding[0]['EnableDigitalBid'] == "0" ){
+		die('Digital Bidding has been disabled.');
+	}
 	$artistsForBidding = getArtistsForBidding($connection);
 ?>
 <!doctype html>

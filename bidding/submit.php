@@ -33,7 +33,7 @@
 	}
 	$checkBid = $checkBid[0];
 
-	if ($checkBid['AuctionEnd'] == "1" or $checkBid['MerchSold'] == "1" or $checkBid['bidcount'] >= $checkBid['AuctionCutoff']){
+	if ($checkBid['EnableDigitalBid'] == "0" or $checkBid['AuctionEnd'] == "1" or $checkBid['MerchSold'] == "1" or $checkBid['bidcount'] >= $checkBid['AuctionCutoff']){
 		header('Location: item.php?error=1&artistid='.$artistid.'&merchid='.$merchid);
 		return;
 	}

@@ -14,6 +14,9 @@
 		header('Location: index.php?error=1');
 	}
 	$infoForBidding = $infoForBidding[0];
+	if ( $infoForBidding['EnableDigitalBid'] == "0" ){
+		die('Digital Bidding has been disabled.');
+	}
 	$itemBids = getBidsForMerch($connection, $artistid, $merchid);
 
 	#Commonly used values

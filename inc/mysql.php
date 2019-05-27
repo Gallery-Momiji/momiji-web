@@ -166,7 +166,7 @@
 		if ( isset( $_POST['search_query'] ) ) {
 			$search = $conn->real_escape_string($_POST['search_query']);
 		}
-		$query = "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchSold`,`AuctionEnd` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 ";
+		$query = "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchSold`,`EnableDigitalBid`,`AuctionEnd` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 ";
 
 		if ( isset( $search ) ){
 			$query .= " AND `MerchTitle` LIKE '%". $search . "%' ";
@@ -193,7 +193,7 @@
 	}
 
 	function getInfoForBidding($conn, $artistid, $merchid){
-		$database = queryDatabase( $conn, "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchMedium`,`MerchSold`,`AuctionEnd`,`AuctionCutoff` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 AND `ArtistID` = $artistid AND `MerchID` = $merchid;" );
+		$database = queryDatabase( $conn, "SELECT `ArtistID`,`MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchMedium`,`MerchSold`,`EnableDigitalBid`,`AuctionEnd`,`AuctionCutoff` FROM `merchandise` CROSS JOIN `options` WHERE `MerchMinBid` > 0 AND `ArtistID` = $artistid AND `MerchID` = $merchid;" );
 		return $database;
 	}
 
@@ -203,7 +203,7 @@
 	}
 
 	function checkPreBidInfo($connection, $artistid, $merchid, $bidvalue){
-		$database = queryDatabase( $connection, "SELECT `MerchSold`,MAX(`value`) AS `currentbid`,COUNT(`value`) AS `bidcount`,`AuctionEnd`,`AuctionCutoff` FROM `merchandise` LEFT JOIN `bids` USING (`ArtistID`,`MerchID`) CROSS JOIN `options` WHERE `ArtistID` = $artistid AND `MerchID` = $merchid AND `MerchMinBid` BETWEEN 1 AND $bidvalue GROUP BY `ArtistID`,`MerchID`;" );
+		$database = queryDatabase( $connection, "SELECT `MerchSold`,MAX(`value`) AS `currentbid`,COUNT(`value`) AS `bidcount`,`EnableDigitalBid`,`AuctionEnd`,`AuctionCutoff` FROM `merchandise` LEFT JOIN `bids` USING (`ArtistID`,`MerchID`) CROSS JOIN `options` WHERE `ArtistID` = $artistid AND `MerchID` = $merchid AND `MerchMinBid` BETWEEN 1 AND $bidvalue GROUP BY `ArtistID`,`MerchID`;" );
 		return $database;
 	}
 
