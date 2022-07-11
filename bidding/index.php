@@ -68,7 +68,11 @@
 <?php
 foreach ($artistsForBidding as $key => $item){
 	$artistNumber=forceStringLength($item['ArtistID'],3,0,true);
-	echo '<option value="AN'.$artistNumber.'">'.$artistNumber.' - '.$item['ArtistName'].'</option>';
+	$artistName=$item['ArtistShowName'];
+	if ( $artistName == "" ){
+        	$artistName=$item['ArtistName'];
+        }
+	echo '<option value="AN'.$artistNumber.'">'."AN".$artistNumber.' - '.$artistName.'</option>';
 }
 ?>
 							</select>

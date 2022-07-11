@@ -181,7 +181,7 @@
 		if ( isset( $_POST['search_query'] ) ) {
 			$search = $conn->real_escape_string($_POST['search_query']);
 		}
-		$query = "SELECT `ArtistID`,`ArtistName` FROM `merchandise` RIGHT JOIN `artists` USING (`ArtistID`) WHERE `MerchMinBid` > 0 ";
+		$query = "SELECT `ArtistID`,`ArtistName`,`ArtistShowName` FROM `merchandise` RIGHT JOIN `artists` USING (`ArtistID`) WHERE `MerchMinBid` > 0 ";
 
 		if ( isset( $search ) ){
 			$query .= " AND `MerchTitle` LIKE '%". $search . "%' ";
