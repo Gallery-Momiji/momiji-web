@@ -135,6 +135,7 @@ foreach ($artistsForBidding as $key => $item){
 
         <script src="../inc/js/vendor/bootstrap.min.js"></script>
 		<script src="../inc/js/urlParam.js"></script>
+        <script src="../inc/js/idletimer.js"></script>
         <script src="js/index.js"></script>
 <?php
 	if ( false === empty( $itemsForBidding ) ){
