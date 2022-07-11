@@ -54,7 +54,7 @@
     <!-- Main jumbotron -->
     <div class="jumbotron">
       <div class="container">
-        <p id="bannermessage">Select an item below to start bidding</p>
+        <p id="bannermessage"><a href=".."><button type="button" class="btn btn-primary">Back</button></a>  Select an item below to start bidding</p>
       </div>
     </div>
 	
