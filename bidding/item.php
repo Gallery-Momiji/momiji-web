@@ -230,7 +230,7 @@ echo $nextbid.' placeholder="'.$nextbid;
 
       <!-- Foot Note -->
       <footer>
-        <p>&copy; 2019 Anime North, Gallery Momiji</p>
+        <p>&copy; 2022 Anime North, Gallery Momiji</p>
         <p>This is open source! Find the source code on <a href=https://github.com/Gallery-Momiji>GitHub!</a></p>
       </footer>
     </div> <!-- Scripts -->
