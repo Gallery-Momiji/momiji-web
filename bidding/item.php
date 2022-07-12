@@ -91,7 +91,7 @@
         <strong>Error:</strong> Unable to submit bid, please try again.
       </div>
 	  <div class="alert alert-danger" style="display:none" role="alert" id="fail_error2">
-        <strong>Error:</strong> The bidder number you provided was not found. If you have not registered yet, please contact a staff member.
+        <strong>Error:</strong> The bidder number you provided was not found. If you have not registered yet, please click "Back" and then click "Register to Bid" on the main page.
       </div>
 	  <div class="alert alert-danger" style="display:none" role="alert" id="fail_error3">
         <strong>Oops,</strong> looks like you might have been out bid!
@@ -182,7 +182,7 @@ echo $artistid.'&merchid='.$merchid;
     <fieldset>
 
     <div class="form-group">
-      <label class="col-md-4 control-label"><strong>You can register to bid at the Control Desk.<br>
+      <label class="col-md-4 control-label"><strong>You can register to bid by clicking the button on the previous page.<br>
 Please bid in whole dollars only.<br>
 After <?php echo $infoForBidding['AuctionCutoff'];?> bids, this piece will be sent to live auction on Sunday.</strong></label>
     </div>
