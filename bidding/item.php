@@ -247,10 +247,10 @@ echo $nextbid.' placeholder="'.$nextbid;
 		echo "$('#warn_over').show();";
 	} else if (count( $itemBids ) >= $infoForBidding['AuctionCutoff']){
 		echo "$('#warn_live').show();";
-	} else if ($MerchMinBid < $MerchQuickSale){
+	} else if ($MerchMinBid > 0){
 		echo "$('#bidForm').show();";
 	}
-	if ($MerchMinBid < $MerchQuickSale){
+	if ($MerchMinBid > 0){
 		echo "$('#bidInfo').show();";
 	}
 ?></script>
