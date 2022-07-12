@@ -55,7 +55,7 @@
     <div class="jumbotron">
       <div class="container">
         <p id="bannermessage"><a href="../BidderReg"><button type="button" class="btn btn-primary">Register to Bid</button></a></p>
-        <p style="font-size:16px">You must have a <b>bidder number</b> to start bidding. Clock on <i>"Register to Bid"</i> if you require a bidder number.</p>
+        <p style="font-size:16px">You must have a <b>bidder number</b> to start bidding. Click on <i>"Register to Bid"</i> if you require a bidder number.</p>
         <p>Select an item below to start bidding</p>
       </div>
     </div>
