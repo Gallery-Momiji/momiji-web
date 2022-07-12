@@ -137,7 +137,7 @@
 
   <form class="form-horizontal" id="bidInfo" style="display:none">
 <?php
-	if ($MerchMinBid < $MerchQuickSale){
+	if ($MerchMinBid > 0){
 		echo '<div class="form-group">
 <div class="col-sm-2 control-label"><label><strong>Minimum Bid ($):</strong></label></div>
 <div class="col-sm-2 control-label">'.$MerchMinBid.'</div>
@@ -182,9 +182,9 @@ echo $artistid.'&merchid='.$merchid;
     <fieldset>
 
     <div class="form-group">
-      <strong>You can register to bid at the Control Desk.<br>
+      <label class="col-md-4 control-label"><strong>You can register to bid at the Control Desk.<br>
 Please bid in whole dollars only.<br>
-After <?php echo $infoForBidding['AuctionCutoff'];?> bids, this piece will be sent to live auction on Sunday.</strong>
+After <?php echo $infoForBidding['AuctionCutoff'];?> bids, this piece will be sent to live auction on Sunday.</strong></label>
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label"><h2>Place a bid below</h2></label>
