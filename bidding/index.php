@@ -54,7 +54,9 @@
     <!-- Main jumbotron -->
     <div class="jumbotron">
       <div class="container">
-        <p id="bannermessage"><a href=".."><button type="button" class="btn btn-primary">Back</button></a>  Select an item below to start bidding</p>
+        <p id="bannermessage"><a href="../BidderReg"><button type="button" class="btn btn-primary">Register to Bid</button></a></p>
+        <p style="font-size:16px">You must have a <b>bidder number</b> to start bidding. Clock on <i>"Register to Bid"</i> if you require a bidder number.</p>
+        <p>Select an item below to start bidding</p>
       </div>
     </div>
 	
@@ -135,7 +137,6 @@ foreach ($artistsForBidding as $key => $item){
 
         <script src="../inc/js/vendor/bootstrap.min.js"></script>
 		<script src="../inc/js/urlParam.js"></script>
-        <script src="../inc/js/idletimer.js"></script>
         <script src="js/index.js"></script>
 <?php
 	if ( false === empty( $itemsForBidding ) ){

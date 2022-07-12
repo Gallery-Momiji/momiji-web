@@ -3,7 +3,7 @@ function resetIdle() {
 	if(idleTimeout) {
 		clearTimeout(idleTimeout);
 	}
-	idleTimeout = setTimeout(function(){window.location='..'}, 5*60*1000);
+	idleTimeout = setTimeout(function(){window.location='../bidding'}, 5*60*1000);
 };
 resetIdle();
 
