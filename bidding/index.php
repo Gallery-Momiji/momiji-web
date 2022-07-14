@@ -24,6 +24,13 @@
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
+            #TopBtn {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+            }
         </style>
         <link rel="stylesheet" href="../inc/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="../inc/css/main.css">
@@ -34,6 +41,7 @@
         <![endif]-->
     </head>
     <body>
+    <button onclick="GoToTop()" id="TopBtn" class="btn btn-primary">Go to Top of Page</button>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -81,7 +89,8 @@ foreach ($artistsForBidding as $key => $item){
 						</div>
 						<div class="col-lg-3">
 						<input class="search-query input-medium" name="search_query" type="text" placeholder="Search by Piece Name" >
-						<button type = "submit "class="btn btn-large" type="button">🔍</button>
+						<button type="submit" class="btn btn-large" type="button">🔍</button>
+						<a href="."><button class="btn btn-large">Clear</button></a>
 						</div>
 					</div>
 				</form>
@@ -137,6 +146,7 @@ foreach ($artistsForBidding as $key => $item){
 
         <script src="../inc/js/vendor/bootstrap.min.js"></script>
 		<script src="../inc/js/urlParam.js"></script>
+        <script src="../inc/js/idletimer.js"></script>
         <script src="js/index.js"></script>
 <?php
 	if ( false === empty( $itemsForBidding ) ){
