@@ -194,7 +194,7 @@ After <?php echo $infoForBidding['AuctionCutoff'];?> bids, this piece will be se
     <div class="form-group">
       <label class="col-md-4 control-label" for="bnumber">Bidder Number</label>
       <div class="col-md-2">
-      <input autocomplete="off" id="bnumber" name="bnumber" type="number" min=1 class="form-control input-md" required="">
+      <input autocomplete="off" id="bnumber" name="bnumber" type="number" min=1 class="form-control input-md" onkeyup="validateBid()" required="">
       </div>
     </div>
 
@@ -202,7 +202,7 @@ After <?php echo $infoForBidding['AuctionCutoff'];?> bids, this piece will be se
     <div class="form-group">
       <label class="col-md-4 control-label" for="name">Name</label>
       <div class="col-md-4">
-      <input autocomplete="off" id="name" name="name" type="text" placeholder="First and Last" minlength=2 class="form-control input-md" required="">
+      <input autocomplete="off" id="name" name="name" type="text" placeholder="First and Last" minlength=2 class="form-control input-md" onkeyup="validateBid()" required="">
       </div>
     </div>
 
@@ -211,8 +211,18 @@ After <?php echo $infoForBidding['AuctionCutoff'];?> bids, this piece will be se
       <label class="col-md-4 control-label" for="bamount">Bid amount ($)</label>
       <div class="col-md-2">
       <input autocomplete="off" id="bamount" name="bamount" type="number" min=<?php
-echo $nextbid.' placeholder="'.$nextbid;
-?> or more" class="form-control input-md" required="">
+echo $nextbid?> placeholder="<?php echo $nextbid?> or more" onkeyup="validateBid()" class="form-control input-md" required="">
+      <script>
+        function validateBid() {
+          var bt = document.getElementById('submit');
+            if (document.getElementById('bnumber').value == "" || document.getElementById('name').value == "" || document.getElementById('bamount').value < <?php echo $nextbid ?>) {
+			bt.disabled = true;
+		}
+		else {
+			bt.disabled = false;
+		}
+	}
+      </script>
       </div>
     </div>
 
@@ -221,7 +231,7 @@ echo $nextbid.' placeholder="'.$nextbid;
     <div class="form-group">
       <label class="col-md-4 control-label" for="submit"></label>
       <div class="col-md-4">
-      <button id="submit" name="submit" class="btn btn-primary">Submit Bid</button>
+      <button id="submit" name="submit" class="btn btn-primary" disabled>Submit Bid</button>
       </div>
     </div>
 
