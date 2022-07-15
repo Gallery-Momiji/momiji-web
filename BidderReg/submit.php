@@ -16,6 +16,7 @@
 				$valid = validate_email($value);
 			break;
 			case 'terms':
+			case 'terms2':
 				$valid = validate_terms($value);
 			break;
 			default:
@@ -25,6 +26,9 @@
 
 		if ($valid){
 			$fields[$field_name] = $connection->real_escape_string($value);
+		} else {
+			header('Location: index.html?success=0');
+			exit;
 		}
 	}
 
@@ -35,18 +39,11 @@
 	}
 
 	function validate_email($value){
-		if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
-			return true;
-		}
-		return false;
+		return filter_var($value, FILTER_VALIDATE_EMAIL);
 	}
 
 	function validate_terms($value){
-		if ($value !== 'on'){
-			header('Location: index.html?success=0');
-		} else {
-			$valid = true;
-		}
+		return $value == 'on';
 	}
 	header('Location: success.html?bidder='.$biddernum);
 	exit;
