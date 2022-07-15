@@ -27,7 +27,7 @@
 		if ($valid){
 			$fields[$field_name] = $connection->real_escape_string($value);
 		} else {
-			header('Location: index.html?success=0');
+			header('Location: index.html?error=1');
 			exit;
 		}
 	}
