@@ -73,7 +73,7 @@
       <div class="container">
         <p id="bannermessage">
           <a href="index.php"><button type="button" class="btn btn-primary">Back</button></a>
-          <a href="javascript-required" onclick="history.go(0);return false;"><button type="button" class="btn btn-primary">Refresh</button></a>
+          <a href="item.php?artistid=<?php echo $artistid."&merchid=".$merchid;?>"><button type="button" class="btn btn-primary">Refresh</button></a>
           <p>AN<?php
             echo forceStringLength($artistid,3,0,true).'-'.forceStringLength($merchid,3,0,true);
           ?></p>
