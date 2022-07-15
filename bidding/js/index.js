@@ -1,5 +1,6 @@
 if ($.urlParam('error') !== false){
 	$('#fail_error').show();
+        setTimeout(function(){$('#fail_error').fadeOut()}, 10000);
 }
 $('#select-anchor').on('change', function() {
 	var aTag = $("a[name='"+ $(this).val() +"']");
